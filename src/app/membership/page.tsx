@@ -70,7 +70,7 @@ export default function MembershipPage() {
               <div className="absolute top-0 right-0 w-40 h-40 border-t border-r border-champagne/10" />
 
               {/* Card header */}
-              <div className="p-8 border-b border-silver/10">
+              <div className="p-6 md:p-8 border-b border-silver/10">
                 <div className="text-2xs tracking-[0.22em] uppercase text-champagne/50 mb-4">
                   Executive Arrival
                 </div>
@@ -94,7 +94,7 @@ export default function MembershipPage() {
               </div>
 
               {/* Features */}
-              <div className="p-8">
+              <div className="p-6 md:p-8">
                 <div className="flex flex-col gap-5">
                   {features.map((f) => (
                     <div key={f.title} className="flex gap-4">
@@ -113,7 +113,7 @@ export default function MembershipPage() {
               </div>
 
               {/* Availability bar */}
-              <div className="px-8 pb-8">
+              <div className="px-6 md:px-8 pb-6 md:pb-8">
                 <div className="border-t border-silver/10 pt-6">
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-2xs text-silver/50 tracking-wider uppercase">Availability</span>
@@ -143,12 +143,12 @@ export default function MembershipPage() {
                   Complete the purchase form. We accept Mercado Pago,
                   international card (Stripe), and bank transfer.
                 </div>
-                <Link href="/checkout" className="btn-ea-primary w-full justify-center mb-3">
+                <Link href="/checkout" className="btn-ea-primary w-full justify-center mb-3 active:opacity-70">
                   Acquire Membership
                 </Link>
                 <a
                   href="https://wa.me/5491100000000"
-                  className="btn-ea-ghost w-full justify-center text-[11px]"
+                  className="btn-ea-ghost w-full justify-center text-[11px] active:opacity-70"
                 >
                   Inquire via WhatsApp
                 </a>

@@ -13,7 +13,7 @@ export function FoundersMembershipSection() {
   const inView = useInView(ref, { once: true, margin: '-10% 0px' })
 
   return (
-    <section ref={ref} className="bg-obsidian py-40 md:py-56 overflow-hidden noise-overlay">
+    <section ref={ref} className="bg-obsidian py-24 md:py-56 overflow-hidden noise-overlay">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Label */}
@@ -21,7 +21,7 @@ export function FoundersMembershipSection() {
           variants={fadeIn}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="ea-label text-silver/55 mb-20"
+          className="ea-label text-silver/55 mb-12 md:mb-20"
         >
           {t.founders.label}
         </motion.div>
@@ -31,7 +31,7 @@ export function FoundersMembershipSection() {
           variants={staggerContainer}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="text-center mb-24"
+          className="text-center mb-16 md:mb-24"
         >
           <motion.h2
             variants={fadeUp}
@@ -60,7 +60,7 @@ export function FoundersMembershipSection() {
           variants={staggerFast}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-silver/8 mb-24"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-silver/8 mb-16 md:mb-24"
         >
           {t.founders.features.map((feature, i) => (
             <motion.div
@@ -104,7 +104,7 @@ export function FoundersMembershipSection() {
           variants={fadeInBlur}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="flex flex-col md:flex-row items-center justify-between gap-8 border-t border-silver/10 pt-12"
+          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8 border-t border-silver/10 pt-10 md:pt-12"
         >
           <div className="flex flex-col gap-2">
             <div className="text-2xs tracking-[0.18em] uppercase text-silver/50">
@@ -115,7 +115,7 @@ export function FoundersMembershipSection() {
             </div>
           </div>
 
-          <Link href="/membership" className="btn-ea-primary px-12 py-4">
+          <Link href="/membership" className="btn-ea-primary px-12 py-4 w-full md:w-auto text-center active:opacity-70">
             {t.founders.cta}
           </Link>
         </motion.div>

@@ -84,7 +84,7 @@ export default function BookingPage() {
           </div>
 
           {/* Stepper */}
-          <div className="grid grid-cols-4 gap-1 mb-12">
+          <div className="grid grid-cols-4 gap-1 mb-10 md:mb-12">
             {STEPS.map((label, i) => {
               const n = i + 1
               return (
@@ -152,7 +152,7 @@ export default function BookingPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="ea-label mb-2 block">Flight date *</label>
                     <input {...form1.register('flightDate')} type="date" className="input-ea" />
@@ -184,7 +184,7 @@ export default function BookingPage() {
                 </div>
 
                 <div className="pt-2">
-                  <button type="submit" className="btn-ea-primary">Continue →</button>
+                  <button type="submit" className="btn-ea-primary w-full sm:w-auto justify-center active:opacity-70">Continue →</button>
                 </div>
               </form>
             )}
@@ -238,9 +238,9 @@ export default function BookingPage() {
                   <p className="text-2xs text-silver/50 mt-1.5">If the passenger is not the holder, enter the membership code that authorizes the service.</p>
                 </div>
 
-                <div className="flex gap-3 pt-2">
-                  <button type="button" onClick={() => setStep(1)} className="btn-ea-ghost">← Back</button>
-                  <button type="submit" className="btn-ea-primary">Continue →</button>
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <button type="button" onClick={() => setStep(1)} className="btn-ea-ghost active:opacity-70">← Back</button>
+                  <button type="submit" className="btn-ea-primary sm:flex-1 justify-center active:opacity-70">Continue →</button>
                 </div>
               </form>
             )}
@@ -283,9 +283,9 @@ export default function BookingPage() {
                   />
                 </div>
 
-                <div className="flex gap-3 pt-2">
-                  <button type="button" onClick={() => setStep(2)} className="btn-ea-ghost">← Back</button>
-                  <button type="submit" className="btn-ea-primary">Review booking →</button>
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <button type="button" onClick={() => setStep(2)} className="btn-ea-ghost active:opacity-70">← Back</button>
+                  <button type="submit" className="btn-ea-primary sm:flex-1 justify-center active:opacity-70">Review booking →</button>
                 </div>
               </form>
             )}
@@ -318,12 +318,12 @@ export default function BookingPage() {
                   You will receive confirmation via WhatsApp within 15 minutes. The chauffeur will contact you 30 minutes before the flight arrives.
                 </div>
 
-                <div className="flex gap-3">
-                  <button type="button" onClick={() => setStep(3)} className="btn-ea-ghost">← Back</button>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button type="button" onClick={() => setStep(3)} className="btn-ea-ghost active:opacity-70">← Back</button>
                   <button
                     onClick={onConfirm}
                     disabled={isLoading}
-                    className="btn-ea-primary flex-1 justify-center"
+                    className="btn-ea-primary sm:flex-1 justify-center active:opacity-70"
                   >
                     {isLoading ? 'Confirming...' : 'Confirm Experience →'}
                   </button>

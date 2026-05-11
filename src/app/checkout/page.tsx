@@ -85,22 +85,22 @@ export default function CheckoutPage() {
                 {/* Personal data */}
                 <div className="bg-carbon border border-silver/10 p-7">
                   <div className="ea-label mb-6">Holder Information</div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="col-span-2 md:col-span-1">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="col-span-1">
                       <label className="ea-label mb-2 block">Full name *</label>
                       <input {...register('name')} className="input-ea" placeholder="First and last name" />
                       {errors.name && <p className="text-2xs text-red-400 mt-1.5">{errors.name.message}</p>}
                     </div>
-                    <div className="col-span-2 md:col-span-1">
+                    <div className="col-span-1">
                       <label className="ea-label mb-2 block">Company <span className="normal-case">(optional)</span></label>
                       <input {...register('company')} className="input-ea" placeholder="Company name" />
                     </div>
-                    <div className="col-span-2 md:col-span-1">
+                    <div className="col-span-1">
                       <label className="ea-label mb-2 block">Email *</label>
                       <input {...register('email')} type="email" className="input-ea" placeholder="email@company.com" />
                       {errors.email && <p className="text-2xs text-red-400 mt-1.5">{errors.email.message}</p>}
                     </div>
-                    <div className="col-span-2 md:col-span-1">
+                    <div className="col-span-1">
                       <label className="ea-label mb-2 block">WhatsApp *</label>
                       <input {...register('whatsapp')} type="tel" className="input-ea" placeholder="+54 9 11 xxxx xxxx" />
                       {errors.whatsapp && <p className="text-2xs text-red-400 mt-1.5">{errors.whatsapp.message}</p>}
@@ -143,7 +143,7 @@ export default function CheckoutPage() {
                         <label className="ea-label mb-2 block">Card number</label>
                         <input {...register('cardNumber')} className="input-ea" placeholder="4242 4242 4242 4242" maxLength={19} />
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-3 md:gap-4">
                         <div>
                           <label className="ea-label mb-2 block">Expiry</label>
                           <input {...register('cardExpiry')} className="input-ea" placeholder="MM / YY" maxLength={7} />

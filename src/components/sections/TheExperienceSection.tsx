@@ -11,7 +11,7 @@ export function TheExperienceSection() {
   const inView = useInView(ref, { once: true, margin: '-14% 0px' })
 
   return (
-    <section id="experience" ref={ref} className="bg-graphite py-40 md:py-52 overflow-hidden">
+    <section id="experience" ref={ref} className="bg-graphite py-24 md:py-52 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Label */}
@@ -19,13 +19,13 @@ export function TheExperienceSection() {
           variants={fadeIn}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="ea-label text-silver/55 mb-20"
+          className="ea-label text-silver/55 mb-12 md:mb-20"
         >
           {t.experience.label}
         </motion.div>
 
         {/* Editorial split */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-32 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
 
           {/* Left: large headline */}
           <motion.div
@@ -52,7 +52,7 @@ export function TheExperienceSection() {
 
             <motion.p
               variants={fadeUp}
-              className="text-silver-mid font-light text-lg leading-relaxed whitespace-pre-line"
+              className="text-silver-mid font-light text-base md:text-lg leading-relaxed whitespace-pre-line"
             >
               {t.experience.sub}
             </motion.p>
@@ -69,7 +69,7 @@ export function TheExperienceSection() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="py-8 group"
+                className="py-6 md:py-8 group"
               >
                 <div className="flex items-start justify-between gap-6">
                   <div className="flex-1">

@@ -60,7 +60,7 @@ export function HeroSection() {
       {/* ── Content ─────────────────────────────────────────────────────────── */}
       <motion.div
         style={{ opacity: contentOpacity, y: contentY }}
-        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-28 pt-40 w-full"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-16 md:pb-28 pt-28 md:pt-40 w-full"
       >
         <motion.div
           variants={staggerSlow}
@@ -69,12 +69,12 @@ export function HeroSection() {
           className="max-w-4xl"
         >
           {/* Eyebrow */}
-          <motion.div variants={fadeIn} className="flex items-center gap-4 mb-14">
+          <motion.div variants={fadeIn} className="flex items-center gap-3 md:gap-4 mb-10 md:mb-14">
             <motion.span
               initial={{ scaleX: 0, transformOrigin: '0%' }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1.0, ease: EASE_APPLE, delay: 0.1 }}
-              className="block w-8 h-px bg-champagne/60 gpu"
+              className="block w-6 md:w-8 h-px bg-champagne/60 gpu shrink-0"
             />
             <span className="ea-label text-warm-white/85" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.95)' }}>
               {t.hero.eyebrow}
@@ -84,9 +84,9 @@ export function HeroSection() {
           {/* Headline — large display type */}
           <motion.h1
             variants={fadeUp}
-            className="font-light leading-[0.92] text-warm-white mb-10"
+            className="font-light leading-[0.92] text-warm-white mb-8 md:mb-10"
             style={{
-              fontSize: 'clamp(3.5rem, 9vw, 8.5rem)',
+              fontSize: 'clamp(3rem, 9vw, 8.5rem)',
               letterSpacing: '-0.045em',
               textShadow: '0 2px 24px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,1)',
             }}
@@ -103,13 +103,13 @@ export function HeroSection() {
           {/* Divider line */}
           <motion.div
             variants={fadeIn}
-            className="w-10 h-px bg-champagne/30 mb-10"
+            className="w-8 md:w-10 h-px bg-champagne/30 mb-8 md:mb-10"
           />
 
           {/* Subline */}
           <motion.p
             variants={fadeUp}
-            className="font-light leading-relaxed mb-14 max-w-sm"
+            className="font-light leading-relaxed mb-10 md:mb-14 max-w-xs md:max-w-sm text-balance"
             style={{
               fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)',
               color: 'rgba(184,184,184,0.90)',
@@ -121,17 +121,17 @@ export function HeroSection() {
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
-            <Link href="/membership" className="btn-ea-primary">
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 md:gap-4">
+            <Link href="/membership" className="btn-ea-primary w-full sm:w-auto active:opacity-70">
               {t.hero.cta1}
             </Link>
-            <Link href="/#experience" className="btn-ea-ghost">
+            <Link href="/#experience" className="btn-ea-ghost w-full sm:w-auto active:opacity-70">
               {t.hero.cta2}
             </Link>
           </motion.div>
 
           {/* Availability dots */}
-          <motion.div variants={fadeIn} className="mt-14 flex items-center gap-4">
+          <motion.div variants={fadeIn} className="mt-10 md:mt-14 flex items-center gap-4">
             <div className="flex gap-[3px]">
               {Array.from({ length: FOUNDERS_TOTAL }).map((_, i) => (
                 <div

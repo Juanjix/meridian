@@ -18,7 +18,7 @@ export function FinalCTASection() {
   return (
     <section
       ref={ref}
-      className="relative bg-obsidian py-56 md:py-72 overflow-hidden noise-overlay vignette"
+      className="relative bg-obsidian py-28 md:py-72 overflow-hidden noise-overlay vignette"
     >
       {/* Background depth — subtle scale parallax */}
       <motion.div
@@ -68,19 +68,19 @@ export function FinalCTASection() {
 
           <motion.div
             variants={lineReveal}
-            className="h-px bg-champagne/30 mx-auto mb-10 origin-left"
+            className="h-px bg-champagne/30 mx-auto mb-8 md:mb-10 origin-left"
             style={{ width: '3rem', marginLeft: 'auto', marginRight: 'auto' }}
           />
 
           <motion.p
             variants={fadeInBlur}
-            className="text-silver-mid font-light text-sm tracking-[0.06em] mb-16"
+            className="text-silver-mid font-light text-sm tracking-[0.06em] mb-12 md:mb-16 text-balance"
           >
             {t.finalCta.sub}
           </motion.p>
 
           <motion.div variants={fadeUp}>
-            <Link href="/membership" className="btn-ea-primary px-14 py-5 text-[11px]">
+            <Link href="/membership" className="btn-ea-primary px-10 md:px-14 py-4 md:py-5 text-[11px] w-full sm:w-auto active:opacity-70">
               {t.finalCta.cta}
             </Link>
           </motion.div>

@@ -74,8 +74,8 @@ export function VehicleExperienceSection() {
       </div>
 
       {/* ── Interior gallery + copy ────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
 
           {/* Left: cinematic photo grid */}
           <motion.div
@@ -88,7 +88,7 @@ export function VehicleExperienceSection() {
             <motion.div
               variants={fadeInBlur}
               className="col-span-2 img-cinematic"
-              style={{ height: '300px' }}
+              style={{ height: 'clamp(200px, 45vw, 300px)' }}
             >
               <Image
                 src="/vehicles/van-interior-2.jpg"
@@ -104,7 +104,7 @@ export function VehicleExperienceSection() {
             <motion.div
               variants={fadeInBlur}
               className="img-cinematic"
-              style={{ height: '195px' }}
+              style={{ height: 'clamp(130px, 28vw, 195px)' }}
             >
               <Image
                 src="/vehicles/van-interior-1.jpg"
@@ -120,7 +120,7 @@ export function VehicleExperienceSection() {
             <motion.div
               variants={fadeInBlur}
               className="img-cinematic"
-              style={{ height: '195px' }}
+              style={{ height: 'clamp(130px, 28vw, 195px)' }}
             >
               <Image
                 src="/vehicles/van-steering.jpg"

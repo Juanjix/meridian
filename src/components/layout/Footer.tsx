@@ -9,8 +9,8 @@ export function Footer() {
 
   return (
     <footer className="bg-graphite border-t border-silver/10">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-20">
-        <div className="flex flex-col md:flex-row justify-between gap-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-20">
+        <div className="flex flex-col md:flex-row justify-between gap-12 md:gap-16">
 
           {/* Brand */}
           <div className="max-w-xs">
@@ -26,7 +26,7 @@ export function Footer() {
           </div>
 
           {/* Links columns */}
-          <div className="flex gap-16 md:gap-24">
+          <div className="flex gap-12 md:gap-24">
             <div>
               <div className="ea-label mb-5">{t.footer.servicesLabel}</div>
               <div className="flex flex-col gap-3">
@@ -66,7 +66,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-silver/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+        <div className="mt-12 md:mt-16 pt-7 md:pt-8 border-t border-silver/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
           <div className="text-2xs font-light text-silver/50">
             {t.footer.copyright(year)}
           </div>

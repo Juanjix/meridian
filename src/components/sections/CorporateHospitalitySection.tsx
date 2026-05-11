@@ -12,7 +12,7 @@ export function CorporateHospitalitySection() {
   const inView = useInView(ref, { once: true, margin: '-10% 0px' })
 
   return (
-    <section ref={ref} className="bg-graphite py-40 md:py-52 overflow-hidden">
+    <section ref={ref} className="bg-graphite py-24 md:py-52 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Label */}
@@ -20,12 +20,12 @@ export function CorporateHospitalitySection() {
           variants={fadeIn}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="ea-label text-silver/55 mb-20"
+          className="ea-label text-silver/55 mb-12 md:mb-20"
         >
           {t.corporate.label}
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-32 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-32 items-start">
 
           {/* Left: headline + CTA */}
           <motion.div
@@ -49,13 +49,13 @@ export function CorporateHospitalitySection() {
 
             <motion.p
               variants={fadeUp}
-              className="text-silver-mid font-light leading-relaxed text-sm max-w-xs mb-12"
+              className="text-silver-mid font-light leading-relaxed text-sm max-w-xs mb-10 md:mb-12"
             >
               {t.corporate.sub}
             </motion.p>
 
             <motion.div variants={fadeInBlur}>
-              <Link href="mailto:hola@executivearrival.com" className="btn-ea-ghost">
+              <Link href="mailto:hola@executivearrival.com" className="btn-ea-ghost w-full sm:w-auto justify-center active:opacity-70">
                 {t.corporate.cta}
               </Link>
             </motion.div>

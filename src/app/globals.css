@@ -228,4 +228,68 @@
     will-change: transform;
     backface-visibility: hidden;
   }
+
+  /* Smooth momentum scrolling on iOS */
+  .scroll-smooth-touch {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Prevent callout menu on long-press */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+}
+
+/* ─── Mobile optimizations ──────────────────────────────────────────────────── */
+
+/* Tap highlight removal globally */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch-friendly interactive elements */
+a, button, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* Minimum touch targets for accessibility */
+@media (max-width: 768px) {
+  .btn-ea-primary,
+  .btn-ea-ghost {
+    min-height: 48px;
+  }
+
+  /* Slightly softer blur on mobile for performance */
+  .img-cinematic img {
+    filter: brightness(0.88) contrast(1.05) saturate(0.88);
+  }
+
+  /* Slightly tighter noise overlay on mobile */
+  .noise-overlay::after {
+    opacity: 0.024;
+  }
+
+  /* Active press states for touch */
+  .btn-ea-primary:active {
+    opacity: 0.72;
+  }
+  .btn-ea-ghost:active {
+    opacity: 0.72;
+  }
+}
+
+/* Reduced motion — respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .gpu {
+    will-change: auto;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
