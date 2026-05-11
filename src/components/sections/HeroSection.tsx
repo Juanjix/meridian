@@ -4,83 +4,110 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
-import { fadeUp, fadeIn, staggerContainer, EASE_CINEMA } from '@/lib/animations'
+import { fadeUp, fadeIn, staggerSlow, EASE_CINEMA, EASE_APPLE } from '@/lib/animations'
 import { FOUNDERS_AVAILABLE, FOUNDERS_TOTAL } from '@/lib/utils'
 
 export function HeroSection() {
   const { t } = useLanguage()
   const { scrollY } = useScroll()
 
-  // Parallax: background drifts up at 30% of scroll speed
-  const bgY = useTransform(scrollY, [0, 800], [0, -160])
-  // Subtle foreground text fade on scroll
-  const contentOpacity = useTransform(scrollY, [0, 400], [1, 0.3])
+  // Parallax: background drifts up — very subtle, cinematic
+  const bgY = useTransform(scrollY, [0, 900], [0, -130])
+  // Content fades as you leave the hero
+  const contentOpacity = useTransform(scrollY, [0, 450], [1, 0.25])
+  const contentY = useTransform(scrollY, [0, 450], [0, 30])
 
   return (
-    <section className="relative min-h-screen bg-obsidian flex flex-col justify-end overflow-hidden">
+    <section className="relative min-h-screen bg-obsidian flex flex-col justify-end overflow-hidden noise-overlay vignette">
 
-      {/* Parallax background image */}
+      {/* ── Parallax background image ───────────────────────────────────────── */}
       <motion.div
         style={{ y: bgY }}
-        className="absolute inset-[-15%]"
+        className="absolute inset-[-14%] gpu"
       >
         <Image
           src="/vehicles/van-exterior.jpg"
           fill
           priority
-          quality={90}
+          quality={95}
+          sizes="100vw"
           className="object-cover object-center"
-          alt="Executive Arrival — Toyota HiAce Executive"
+          alt="Executive Arrival — Toyota HiAce"
         />
-        {/* Cinematic dark overlay: heavy on top/bottom, lighter in center */}
+
+        {/* Layered cinematic overlay */}
         <div
           className="absolute inset-0"
           style={{
-            background:
-              'linear-gradient(180deg, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.45) 40%, rgba(8,8,8,0.65) 75%, rgba(8,8,8,0.92) 100%)',
+            background: [
+              /* Top darkness — nav protection */
+              'linear-gradient(180deg, rgba(8,8,8,0.80) 0%, rgba(8,8,8,0.30) 30%, transparent 55%)',
+              /* Bottom darkness — content readability */
+              'linear-gradient(0deg, rgba(8,8,8,0.96) 0%, rgba(8,8,8,0.50) 38%, transparent 60%)',
+              /* Center left warmth — photographic feel */
+              'radial-gradient(ellipse 75% 60% at 20% 60%, rgba(8,8,8,0.35) 0%, transparent 70%)',
+            ].join(', '),
           }}
         />
       </motion.div>
 
-      {/* Subtle top line */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-champagne/20 to-transparent z-10" />
+      {/* ── Atmospheric edge light — single horizontal line ─────────────────── */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-champagne/18 to-transparent z-10" />
 
-      {/* Content */}
+      {/* ── Content ─────────────────────────────────────────────────────────── */}
       <motion.div
-        style={{ opacity: contentOpacity }}
-        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-24 pt-40 w-full"
+        style={{ opacity: contentOpacity, y: contentY }}
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-28 pt-40 w-full"
       >
         <motion.div
-          variants={staggerContainer}
+          variants={staggerSlow}
           initial="hidden"
           animate="visible"
           className="max-w-4xl"
         >
           {/* Eyebrow */}
-          <motion.div variants={fadeIn} className="flex items-center gap-4 mb-12">
-            <span className="block w-8 h-px bg-champagne/50" />
-            <span className="ea-label text-champagne/80">
+          <motion.div variants={fadeIn} className="flex items-center gap-4 mb-14">
+            <motion.span
+              initial={{ scaleX: 0, transformOrigin: '0%' }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1.0, ease: EASE_APPLE, delay: 0.1 }}
+              className="block w-8 h-px bg-champagne/60 gpu"
+            />
+            <span className="ea-label text-champagne/70">
               {t.hero.eyebrow}
             </span>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline — large display type */}
           <motion.h1
             variants={fadeUp}
-            className="font-light leading-[0.95] text-warm-white mb-10"
-            style={{ fontSize: 'clamp(3.5rem, 9vw, 8rem)', letterSpacing: '-0.04em' }}
+            className="font-light leading-[0.92] text-warm-white mb-10"
+            style={{ fontSize: 'clamp(3.5rem, 9vw, 8.5rem)', letterSpacing: '-0.045em' }}
           >
             <span className="block">{t.hero.headline1}</span>
-            <span className="block" style={{ color: 'rgba(240,236,230,0.75)' }}>
+            <span
+              className="block"
+              style={{ color: 'rgba(240,236,230,0.68)' }}
+            >
               {t.hero.headline2}
             </span>
           </motion.h1>
 
+          {/* Divider line */}
+          <motion.div
+            variants={fadeIn}
+            className="w-10 h-px bg-champagne/30 mb-10"
+          />
+
           {/* Subline */}
           <motion.p
             variants={fadeUp}
-            className="text-silver-light font-light leading-relaxed mb-14 max-w-md"
-            style={{ fontSize: 'clamp(0.875rem, 1.5vw, 1rem)' }}
+            className="font-light leading-relaxed mb-14 max-w-sm"
+            style={{
+              fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)',
+              color: 'rgba(184,184,184,0.80)',
+              letterSpacing: '0.01em',
+            }}
           >
             {t.hero.sub}
           </motion.p>
@@ -95,38 +122,38 @@ export function HeroSection() {
             </Link>
           </motion.div>
 
-          {/* Availability indicator */}
-          <motion.div variants={fadeIn} className="mt-12 flex items-center gap-4">
-            <div className="flex gap-1">
+          {/* Availability dots */}
+          <motion.div variants={fadeIn} className="mt-14 flex items-center gap-4">
+            <div className="flex gap-[3px]">
               {Array.from({ length: FOUNDERS_TOTAL }).map((_, i) => (
                 <div
                   key={i}
-                  className={`w-1 h-1 rounded-full ${
+                  className={`w-[3px] h-[3px] rounded-full transition-opacity duration-300 ${
                     i < FOUNDERS_TOTAL - FOUNDERS_AVAILABLE
-                      ? 'bg-champagne/80'
-                      : 'bg-silver/20'
+                      ? 'bg-champagne/70'
+                      : 'bg-silver/18'
                   }`}
                 />
               ))}
             </div>
-            <span className="text-2xs text-silver-light/70 font-light tracking-[0.14em]">
+            <span className="text-2xs font-light tracking-[0.14em]" style={{ color: 'rgba(184,184,184,0.55)' }}>
               {t.hero.availabilityLabel(FOUNDERS_AVAILABLE, FOUNDERS_TOTAL)}
             </span>
           </motion.div>
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* ── Scroll indicator ─────────────────────────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.2, duration: 1, ease: EASE_CINEMA }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        transition={{ delay: 2.6, duration: 1.2, ease: EASE_CINEMA }}
+        className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center z-10"
       >
         <motion.div
-          animate={{ y: [0, 7, 0] }}
-          transition={{ repeat: Infinity, duration: 2.6, ease: 'easeInOut' }}
-          className="w-px h-10 bg-gradient-to-b from-silver/40 to-transparent"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut' }}
+          className="w-px h-11 bg-gradient-to-b from-silver/35 to-transparent"
         />
       </motion.div>
     </section>

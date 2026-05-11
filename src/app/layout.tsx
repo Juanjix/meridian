@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { LanguageProvider } from '@/context/LanguageContext'
+import { LenisProvider } from '@/components/providers/LenisProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 
 export const metadata: Metadata = {
@@ -34,10 +35,12 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-obsidian">
-        <LanguageProvider>
-          <ScrollProgress />
-          {children}
-        </LanguageProvider>
+        <LenisProvider>
+          <LanguageProvider>
+            <ScrollProgress />
+            {children}
+          </LanguageProvider>
+        </LenisProvider>
       </body>
     </html>
   )

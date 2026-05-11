@@ -2,51 +2,64 @@
 
 import Link from 'next/link'
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
-import { fadeUp, fadeIn, staggerContainer, lineReveal, EASE_CINEMA } from '@/lib/animations'
+import { fadeUp, fadeIn, fadeInBlur, staggerContainer, lineReveal, EASE_CINEMA, EASE_APPLE } from '@/lib/animations'
 
 export function FinalCTASection() {
   const { t } = useLanguage()
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-10% 0px' })
+  const inView = useInView(ref, { once: true, margin: '-8% 0px' })
+
+  // Subtle background parallax
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.04, 1.0])
 
   return (
     <section
       ref={ref}
-      className="relative bg-obsidian py-56 md:py-72 overflow-hidden noise-overlay"
+      className="relative bg-obsidian py-56 md:py-72 overflow-hidden noise-overlay vignette"
     >
-      {/* Background depth */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 100% 70% at 50% 50%, #141414 0%, #080808 70%)',
-        }}
-      />
+      {/* Background depth — subtle scale parallax */}
+      <motion.div
+        style={{ scale: bgScale }}
+        className="absolute inset-0 gpu"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background: [
+              'radial-gradient(ellipse 100% 70% at 50% 50%, #141414 0%, #080808 68%)',
+              'radial-gradient(ellipse 40% 40% at 80% 20%, rgba(26,26,26,0.6) 0%, transparent 60%)',
+            ].join(', '),
+          }}
+        />
+      </motion.div>
 
       {/* Top separator */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-champagne/15 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-champagne/12 to-transparent z-10" />
 
+      {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-center">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
         >
-          {/* Headline */}
+          {/* Large display headline */}
           <motion.h2
             variants={fadeUp}
-            className="font-light text-warm-white leading-[0.9] mb-14"
-            style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', letterSpacing: '-0.04em' }}
+            className="font-light text-warm-white leading-[0.88] mb-14"
+            style={{ fontSize: 'clamp(3rem, 8.5vw, 7.5rem)', letterSpacing: '-0.045em' }}
           >
             <span className="block">{t.finalCta.headline1}</span>
             <span className="block">{t.finalCta.headline2}</span>
+            {/* Outlined / ghost text — cinematic depth */}
             <span
               className="block"
               style={{
                 color: 'transparent',
-                WebkitTextStroke: '1px rgba(192, 186, 176, 0.35)',
+                WebkitTextStroke: '1px rgba(196, 186, 176, 0.22)',
               }}
             >
               {t.finalCta.headline3}
@@ -55,26 +68,27 @@ export function FinalCTASection() {
 
           <motion.div
             variants={lineReveal}
-            className="w-12 h-px bg-champagne/35 mx-auto mb-10"
+            className="h-px bg-champagne/30 mx-auto mb-10 origin-left"
+            style={{ width: '3rem', marginLeft: 'auto', marginRight: 'auto' }}
           />
 
           <motion.p
-            variants={fadeIn}
-            className="text-silver-mid font-light text-base tracking-wide mb-16"
+            variants={fadeInBlur}
+            className="text-silver-mid font-light text-sm tracking-[0.06em] mb-16"
           >
             {t.finalCta.sub}
           </motion.p>
 
           <motion.div variants={fadeUp}>
-            <Link href="/membership" className="btn-ea-primary px-14 py-5 text-xs">
+            <Link href="/membership" className="btn-ea-primary px-14 py-5 text-[11px]">
               {t.finalCta.cta}
             </Link>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Bottom line */}
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-silver/10 to-transparent" />
+      {/* Bottom separator */}
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-silver/8 to-transparent" />
     </section>
   )
 }

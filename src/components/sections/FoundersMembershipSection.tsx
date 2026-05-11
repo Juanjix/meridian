@@ -4,16 +4,16 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
-import { fadeUp, fadeIn, staggerContainer, staggerFast, lineReveal } from '@/lib/animations'
+import { fadeUp, fadeIn, fadeInBlur, staggerContainer, staggerFast, lineReveal } from '@/lib/animations'
 import { FOUNDERS_AVAILABLE } from '@/lib/utils'
 
 export function FoundersMembershipSection() {
   const { t } = useLanguage()
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-12% 0px' })
+  const inView = useInView(ref, { once: true, margin: '-10% 0px' })
 
   return (
-    <section ref={ref} className="bg-obsidian py-40 md:py-56 overflow-hidden">
+    <section ref={ref} className="bg-obsidian py-40 md:py-56 overflow-hidden noise-overlay">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Label */}
@@ -21,12 +21,12 @@ export function FoundersMembershipSection() {
           variants={fadeIn}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="ea-label text-silver/60 mb-20"
+          className="ea-label text-silver/55 mb-20"
         >
           {t.founders.label}
         </motion.div>
 
-        {/* Centered monumental headline */}
+        {/* Monumental centered headline */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -35,19 +35,22 @@ export function FoundersMembershipSection() {
         >
           <motion.h2
             variants={fadeUp}
-            className="font-light text-warm-white leading-[0.92]"
-            style={{ fontSize: 'clamp(3.5rem, 8vw, 7.5rem)', letterSpacing: '-0.04em' }}
+            className="font-light text-warm-white leading-[0.91]"
+            style={{ fontSize: 'clamp(3.5rem, 8.5vw, 7.5rem)', letterSpacing: '-0.045em' }}
           >
             <span className="block">{t.founders.headline1}</span>
-            <span className="block text-silver-light">{t.founders.headline2}</span>
+            <span className="block" style={{ color: 'rgba(240,236,230,0.60)' }}>
+              {t.founders.headline2}
+            </span>
           </motion.h2>
 
           <motion.div
             variants={lineReveal}
-            className="w-12 h-px bg-champagne/40 mx-auto mt-10 mb-8"
+            className="h-px bg-champagne/35 mx-auto mt-10 mb-8 origin-left"
+            style={{ width: '3rem', marginLeft: 'auto', marginRight: 'auto' }}
           />
 
-          <motion.p variants={fadeIn} className="text-silver-mid font-light text-lg">
+          <motion.p variants={fadeInBlur} className="text-silver-mid font-light text-lg">
             {t.founders.sub}
           </motion.p>
         </motion.div>
@@ -57,15 +60,15 @@ export function FoundersMembershipSection() {
           variants={staggerFast}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-silver/10 mb-24"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-silver/8 mb-24"
         >
           {t.founders.features.map((feature, i) => (
             <motion.div
               key={i}
               variants={fadeUp}
-              className="bg-obsidian p-8 hover:bg-graphite transition-colors duration-500"
+              className="bg-obsidian p-8 hover:bg-graphite transition-colors duration-600 group"
             >
-              <div className="text-2xs tracking-[0.18em] uppercase text-champagne/50 mb-4">
+              <div className="text-2xs tracking-[0.18em] uppercase text-champagne/45 mb-4 group-hover:text-champagne/65 transition-colors duration-400">
                 0{i + 1}
               </div>
               <p className="text-warm-white font-light text-sm leading-relaxed">
@@ -76,16 +79,16 @@ export function FoundersMembershipSection() {
 
           {/* Price card */}
           <motion.div
-            variants={fadeUp}
+            variants={fadeInBlur}
             className="bg-carbon p-8 flex flex-col justify-between"
           >
-            <div className="text-2xs tracking-[0.18em] uppercase text-champagne/50 mb-4">
+            <div className="text-2xs tracking-[0.18em] uppercase text-champagne/45 mb-4">
               Investment
             </div>
             <div>
               <div
                 className="font-light text-warm-white leading-none mb-2"
-                style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
+                style={{ fontSize: 'clamp(1.9rem, 3.2vw, 2.8rem)', letterSpacing: '-0.04em' }}
               >
                 {t.founders.price}
               </div>
@@ -98,13 +101,13 @@ export function FoundersMembershipSection() {
 
         {/* Availability + CTA */}
         <motion.div
-          variants={fadeUp}
+          variants={fadeInBlur}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           className="flex flex-col md:flex-row items-center justify-between gap-8 border-t border-silver/10 pt-12"
         >
           <div className="flex flex-col gap-2">
-            <div className="text-2xs tracking-[0.18em] uppercase text-silver/60">
+            <div className="text-2xs tracking-[0.18em] uppercase text-silver/50">
               {t.founders.limited}
             </div>
             <div className="text-sm text-silver-light font-light">
