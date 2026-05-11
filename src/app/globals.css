@@ -96,13 +96,15 @@
 
   .btn-ea-ghost {
     @apply inline-flex items-center justify-center
-           bg-transparent text-warm-white
+           bg-obsidian/30 text-warm-white
            text-[11px] tracking-[0.18em] uppercase font-light
            px-8 py-3.5
-           border border-warm-white/20
+           border border-warm-white/40
            transition-all duration-500
-           hover:border-warm-white/60
+           hover:bg-obsidian/50 hover:border-warm-white/70
            disabled:opacity-40 disabled:cursor-not-allowed;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
 
   .btn-ea-text {

@@ -35,17 +35,20 @@ export function HeroSection() {
           alt="Executive Arrival — Toyota HiAce"
         />
 
+        {/* Base tint — uniform coverage across entire image */}
+        <div className="absolute inset-0 bg-obsidian/55" />
+
         {/* Layered cinematic overlay */}
         <div
           className="absolute inset-0"
           style={{
             background: [
-              /* Top darkness — nav protection */
-              'linear-gradient(180deg, rgba(8,8,8,0.80) 0%, rgba(8,8,8,0.30) 30%, transparent 55%)',
+              /* Top darkness — strong nav + eyebrow protection */
+              'linear-gradient(180deg, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.72) 25%, rgba(8,8,8,0.40) 50%, transparent 70%)',
               /* Bottom darkness — content readability */
-              'linear-gradient(0deg, rgba(8,8,8,0.96) 0%, rgba(8,8,8,0.50) 38%, transparent 60%)',
-              /* Center left warmth — photographic feel */
-              'radial-gradient(ellipse 75% 60% at 20% 60%, rgba(8,8,8,0.35) 0%, transparent 70%)',
+              'linear-gradient(0deg, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.75) 30%, rgba(8,8,8,0.30) 55%, transparent 70%)',
+              /* Center left — extra depth behind text block */
+              'radial-gradient(ellipse 80% 70% at 15% 65%, rgba(8,8,8,0.55) 0%, transparent 65%)',
             ].join(', '),
           }}
         />
@@ -73,7 +76,7 @@ export function HeroSection() {
               transition={{ duration: 1.0, ease: EASE_APPLE, delay: 0.1 }}
               className="block w-8 h-px bg-champagne/60 gpu"
             />
-            <span className="ea-label text-champagne/70">
+            <span className="ea-label text-warm-white/85" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.95)' }}>
               {t.hero.eyebrow}
             </span>
           </motion.div>
@@ -82,12 +85,16 @@ export function HeroSection() {
           <motion.h1
             variants={fadeUp}
             className="font-light leading-[0.92] text-warm-white mb-10"
-            style={{ fontSize: 'clamp(3.5rem, 9vw, 8.5rem)', letterSpacing: '-0.045em' }}
+            style={{
+              fontSize: 'clamp(3.5rem, 9vw, 8.5rem)',
+              letterSpacing: '-0.045em',
+              textShadow: '0 2px 24px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,1)',
+            }}
           >
             <span className="block">{t.hero.headline1}</span>
             <span
               className="block"
-              style={{ color: 'rgba(240,236,230,0.68)' }}
+              style={{ color: 'rgba(240,236,230,0.75)' }}
             >
               {t.hero.headline2}
             </span>
@@ -105,8 +112,9 @@ export function HeroSection() {
             className="font-light leading-relaxed mb-14 max-w-sm"
             style={{
               fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)',
-              color: 'rgba(184,184,184,0.80)',
+              color: 'rgba(184,184,184,0.90)',
               letterSpacing: '0.01em',
+              textShadow: '0 1px 12px rgba(0,0,0,0.9)',
             }}
           >
             {t.hero.sub}
