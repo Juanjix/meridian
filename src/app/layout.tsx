@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: 'Executive Arrival — Executive Ground Hospitality',
     description: 'Your Arrival, Handled.',
     siteName: 'Executive Arrival',
-    locale: 'en_US',
+    locale: 'es_AR',
     type: 'website',
   },
 }
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <link
           rel="preconnect"
