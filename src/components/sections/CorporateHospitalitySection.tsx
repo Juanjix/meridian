@@ -86,7 +86,7 @@ export function CorporateHospitalitySection() {
               </motion.p>
               <motion.div variants={fadeUp}>
                 <Link
-                  href="mailto:hola@executivearrival.com"
+                  href="mailto:hola@millenniumtravel.com.ar"
                   className="btn-ea-ghost w-full sm:w-auto justify-center active:opacity-70"
                 >
                   {t.corporate.cta}

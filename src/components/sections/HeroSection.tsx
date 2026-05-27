@@ -34,7 +34,7 @@ export function HeroSection() {
           quality={95}
           sizes="100vw"
           className="object-cover object-center"
-          alt="Executive Arrival — Executive Cabin"
+          alt="Millennium Travel — Executive Cabin"
         />
 
         {/* Cinematic video overlay — covers image when available */}
@@ -159,7 +159,7 @@ export function HeroSection() {
             <Link href="/membership" className="btn-ea-primary w-full sm:w-auto active:opacity-70">
               {t.hero.cta1}
             </Link>
-            <Link href="mailto:hola@executivearrival.com" className="btn-ea-ghost w-full sm:w-auto active:opacity-70">
+            <Link href="mailto:hola@millenniumtravel.com.ar" className="btn-ea-ghost w-full sm:w-auto active:opacity-70">
               {t.hero.cta2}
             </Link>
           </motion.div>

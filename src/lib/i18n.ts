@@ -126,11 +126,11 @@ export const translations = {
         experience: 'Experience',
       },
       contact: {
-        email: 'hola@executivearrival.com',
+        email: 'hola@millenniumtravel.com.ar',
         whatsapp: 'WhatsApp Concierge',
       },
       copyright: (year: number) =>
-        `© ${year} Executive Arrival. All rights reserved.`,
+        `© ${year} Millennium Travel. All rights reserved.`,
       sub: 'Not a transfer. An arrival.',
     },
   },
@@ -260,11 +260,11 @@ export const translations = {
         experience: 'Experiencia',
       },
       contact: {
-        email: 'hola@executivearrival.com',
+        email: 'hola@millenniumtravel.com.ar',
         whatsapp: 'WhatsApp Concierge',
       },
       copyright: (year: number) =>
-        `© ${year} Executive Arrival. Todos los derechos reservados.`,
+        `© ${year} Millennium Travel. Todos los derechos reservados.`,
       sub: 'No es un traslado. Es una llegada.',
     },
   },

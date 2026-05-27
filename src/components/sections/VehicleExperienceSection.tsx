@@ -54,7 +54,7 @@ export function VehicleExperienceSection() {
               quality={92}
               sizes="100vw"
               className="object-cover object-center"
-              alt="Executive Cabin — Executive Arrival"
+              alt="Executive Cabin — Millennium Travel"
               style={{ filter: 'brightness(0.82) contrast(1.1) saturate(0.82)' }}
             />
           </motion.div>

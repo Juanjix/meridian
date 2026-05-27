@@ -72,7 +72,7 @@ export default function MembershipPage() {
               {/* Card header */}
               <div className="p-6 md:p-8 border-b border-silver/10">
                 <div className="text-2xs tracking-[0.22em] uppercase text-champagne/50 mb-4">
-                  Executive Arrival
+                  Millennium Travel
                 </div>
                 <div className="text-lg tracking-[0.1em] uppercase text-warm-white font-light mb-1">
                   Founder Member

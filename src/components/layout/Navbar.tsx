@@ -85,7 +85,7 @@ export function Navbar() {
             onClick={closeMenu}
             className="text-[11px] tracking-[0.28em] uppercase font-light text-warm-white/90 hover:text-warm-white transition-colors duration-300 relative z-10"
           >
-            Executive Arrival
+            Millennium Travel
           </Link>
 
           {/* Center links — desktop only */}

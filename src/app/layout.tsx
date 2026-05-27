@@ -5,12 +5,12 @@ import { LenisProvider } from '@/components/providers/LenisProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 
 export const metadata: Metadata = {
-  title: 'Executive Arrival — Executive Ground Hospitality',
-  description: 'Executive ground hospitality designed for premium corporate and VIP experiences. Buenos Aires.',
+  title: 'Millennium Travel — Hospitalidad Ejecutiva en Buenos Aires',
+  description: 'Hospitalidad ejecutiva terrestre para experiencias corporativas premium y VIP. Buenos Aires.',
   openGraph: {
-    title: 'Executive Arrival — Executive Ground Hospitality',
-    description: 'Your Arrival, Handled.',
-    siteName: 'Executive Arrival',
+    title: 'Millennium Travel — Hospitalidad Ejecutiva',
+    description: 'Tu llegada, comienza aquí.',
+    siteName: 'Millennium Travel',
     locale: 'es_AR',
     type: 'website',
   },

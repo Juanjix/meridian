@@ -174,8 +174,8 @@ export default function CheckoutPage() {
                         {[
                           ['Bank', 'Banco Galicia'],
                           ['CBU', '0070123400001234567890'],
-                          ['Alias', 'EXECUTIVE.ARRIVAL'],
-                          ['Holder', 'Executive Arrival SRL'],
+                          ['Alias', 'MILLENNIUM.TRAVEL'],
+                          ['Holder', 'Millennium Travel SRL'],
                         ].map(([k, v]) => (
                           <div key={k} className="flex justify-between text-xs">
                             <span className="text-silver font-light">{k}</span>
@@ -185,8 +185,8 @@ export default function CheckoutPage() {
                       </div>
                       <p className="text-2xs text-silver mt-5 leading-relaxed">
                         Send receipt to{' '}
-                        <a href="mailto:hola@executivearrival.com" className="text-champagne/80 hover:text-champagne transition-colors">
-                          hola@executivearrival.com
+                        <a href="mailto:hola@millenniumtravel.com.ar" className="text-champagne/80 hover:text-champagne transition-colors">
+                          hola@millenniumtravel.com.ar
                         </a>{' '}
                         and we will confirm your membership within 2 business hours.
                       </p>
