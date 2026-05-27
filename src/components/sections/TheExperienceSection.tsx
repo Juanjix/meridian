@@ -31,7 +31,7 @@ export function TheExperienceSection() {
             variants={fadeIn}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="ea-label text-silver/55 mb-16 md:mb-24"
+            className="ea-label mb-16 md:mb-24"
           >
             {t.experience.label}
           </motion.div>
@@ -44,21 +44,22 @@ export function TheExperienceSection() {
             className="mb-16 md:mb-24"
           >
             {t.experience.manifesto.split('\n').map((line, i) => (
-              <div key={i} className="overflow-hidden">
+              <div key={i} style={{ overflow: 'hidden', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
                 <motion.p
                   custom={i}
                   variants={{
-                    hidden: { y: '110%', opacity: 0 },
+                    hidden: { y: '115%', opacity: 0 },
                     visible: {
                       y: '0%',
-                      opacity: i === 0 ? 0.45 : 1,
+                      opacity: i === 0 ? 0.52 : 1,
                       transition: { duration: 1.1, ease: EASE_CINEMA, delay: i * 0.12 },
                     },
                   }}
-                  className="font-light text-warm-white leading-[0.92]"
+                  className="font-light text-warm-white"
                   style={{
                     fontSize: 'clamp(2.4rem, 7.5vw, 6.5rem)',
                     letterSpacing: '-0.04em',
+                    lineHeight: 1.0,
                   }}
                 >
                   {line}
@@ -135,7 +136,7 @@ export function TheExperienceSection() {
             </h3>
 
             {/* Desc */}
-            <p className="text-silver font-light text-xs md:text-sm leading-relaxed" style={{ lineHeight: 1.7 }}>
+            <p className="text-silver-mid font-light text-xs md:text-sm leading-relaxed" style={{ lineHeight: 1.7 }}>
               {feature.desc}
             </p>
           </motion.div>

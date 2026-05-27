@@ -24,7 +24,7 @@ export function FoundersMembershipSection() {
             variants={fadeIn}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="ea-label text-silver/55 mb-6 md:mb-8"
+            className="ea-label mb-6 md:mb-8"
           >
             {t.founders.label}
           </motion.div>
@@ -34,7 +34,7 @@ export function FoundersMembershipSection() {
             variants={fadeIn}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="ea-label text-champagne/40 mb-12 md:mb-16"
+            className="ea-label mb-12 md:mb-16" style={{ color: 'rgba(196,186,176,0.70)' }}
           >
             {t.founders.eyebrow}
           </motion.div>
@@ -46,18 +46,18 @@ export function FoundersMembershipSection() {
             animate={inView ? 'visible' : 'hidden'}
           >
             {[t.founders.headline1, t.founders.headline2].map((line, i) => (
-              <div key={i} className="overflow-hidden">
+              <div key={i} style={{ overflow: 'hidden', paddingBottom: '0.1em', marginBottom: '-0.1em' }}>
                 <motion.p
                   variants={{
-                    hidden: { y: '110%', opacity: 0 },
+                    hidden: { y: '115%', opacity: 0 },
                     visible: {
                       y: '0%',
-                      opacity: i === 1 ? 0.42 : 1,
+                      opacity: i === 1 ? 0.48 : 1,
                       transition: { duration: 1.1, ease: EASE_CINEMA, delay: i * 0.1 },
                     },
                   }}
-                  className="font-light text-warm-white leading-[0.9]"
-                  style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', letterSpacing: '-0.045em' }}
+                  className="font-light text-warm-white"
+                  style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', letterSpacing: '-0.045em', lineHeight: 0.95 }}
                 >
                   {line}
                 </motion.p>
@@ -123,7 +123,7 @@ export function FoundersMembershipSection() {
             >
               {t.founders.price}
             </div>
-            <div className="text-xs text-silver font-light leading-relaxed">
+            <div className="text-xs text-silver-mid font-light leading-relaxed">
               {t.founders.priceNote}
             </div>
           </div>
@@ -138,7 +138,7 @@ export function FoundersMembershipSection() {
         className="max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8"
       >
         <div className="flex flex-col gap-1.5">
-          <div className="text-2xs tracking-[0.18em] uppercase text-silver/45 font-light">
+          <div className="text-2xs tracking-[0.18em] uppercase font-light" style={{ color: '#9A9A9A' }}>
             {t.founders.limited}
           </div>
           <div className="text-sm text-silver-light font-light">

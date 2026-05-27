@@ -16,6 +16,13 @@ export const translations = {
       sub: "We don't move people. We manage arrivals. Executive ground hospitality for those who understand that first impressions begin before the lobby.",
       cta1: 'Request Founding Access',
       cta2: 'Executive Inquiry',
+      typewriterPhrases: [
+        'Executive Hospitality. Active.',
+        'Arrival Protocol. Initialized.',
+        'Your Welcome. Ready.',
+        'Concierge. Available.',
+        'Ground Protocol. Confirmed.',
+      ],
       availabilityLabel: (n: number, total: number) =>
         `${n} of ${total} founding memberships available`,
     },
@@ -143,6 +150,13 @@ export const translations = {
       sub: 'No movemos personas. Gestionamos llegadas. Hospitalidad ejecutiva para quienes entienden que la primera impresión empieza antes del lobby.',
       cta1: 'Solicitar Acceso Founders',
       cta2: 'Consulta Ejecutiva',
+      typewriterPhrases: [
+        'Hospitalidad Ejecutiva. Activa.',
+        'Protocolo de Llegada. Inicializado.',
+        'Tu Recepción. Lista.',
+        'Concierge. Disponible.',
+        'Protocolo en Tierra. Confirmado.',
+      ],
       availabilityLabel: (n: number, total: number) =>
         `${n} de ${total} membresías founders disponibles`,
     },

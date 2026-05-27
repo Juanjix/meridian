@@ -23,7 +23,7 @@ export function CorporateHospitalitySection() {
             variants={fadeIn}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="ea-label text-silver/55 mb-12 md:mb-16"
+            className="ea-label mb-12 md:mb-16"
           >
             {t.corporate.label}
           </motion.div>
@@ -36,18 +36,18 @@ export function CorporateHospitalitySection() {
             className="mb-14 md:mb-20"
           >
             {t.corporate.manifesto.split('\n').map((line, i) => (
-              <div key={i} className="overflow-hidden">
+              <div key={i} style={{ overflow: 'hidden', paddingBottom: '0.12em', marginBottom: '-0.12em' }}>
                 <motion.p
                   variants={{
-                    hidden: { y: '110%', opacity: 0 },
+                    hidden: { y: '115%', opacity: 0 },
                     visible: {
                       y: '0%',
-                      opacity: i === 0 ? 0.90 : 0.45,
+                      opacity: i === 0 ? 1 : 0.52,
                       transition: { duration: 1.1, ease: EASE_CINEMA, delay: i * 0.1 },
                     },
                   }}
-                  className="font-light text-warm-white leading-[0.93]"
-                  style={{ fontSize: 'clamp(2rem, 5.8vw, 5rem)', letterSpacing: '-0.04em' }}
+                  className="font-light text-warm-white"
+                  style={{ fontSize: 'clamp(2rem, 5.8vw, 5rem)', letterSpacing: '-0.04em', lineHeight: 1.0 }}
                 >
                   {line}
                 </motion.p>
@@ -107,7 +107,7 @@ export function CorporateHospitalitySection() {
               variants={fadeIn}
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
-              className="ea-label text-silver/40 mb-8"
+              className="ea-label mb-8"
             >
               {t.corporate.clientsLabel}
             </motion.div>
@@ -144,7 +144,7 @@ export function CorporateHospitalitySection() {
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
           >
-            <div className="ea-label text-silver/40 mb-8">Partner Hotels</div>
+            <div className="ea-label mb-8">Partner Hotels</div>
 
             <div className="grid grid-cols-2 gap-px bg-silver/8">
               {['Four Seasons', 'Faena', 'Alvear Palace', 'Palacio Duhau'].map((h) => (
@@ -163,7 +163,7 @@ export function CorporateHospitalitySection() {
             </div>
 
             <div className="mt-8 pt-8 border-t border-silver/10">
-              <p className="text-2xs text-silver/35 font-light leading-relaxed tracking-wide">
+              <p className="text-2xs font-light leading-relaxed tracking-wide" style={{ color: '#8A8A8A' }}>
                 {/* A contextual note about the partner network */}
                 Direct coordination with hotel reception and concierge from point of arrival.
               </p>

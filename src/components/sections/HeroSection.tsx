@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 import { fadeUp, fadeIn, staggerSlow, EASE_CINEMA, EASE_APPLE } from '@/lib/animations'
+import { TypewriterLine } from '@/components/ui/TypewriterLine'
 import { FOUNDERS_AVAILABLE, FOUNDERS_TOTAL } from '@/lib/utils'
 
 export function HeroSection() {
@@ -110,28 +111,42 @@ export function HeroSection() {
           {/* Divider */}
           <motion.div variants={fadeIn} className="w-8 md:w-10 h-px bg-champagne/30 mb-8 md:mb-10" />
 
-          {/* Manifesto line — emotional anchor */}
-          <motion.p
-            variants={fadeUp}
-            className="font-light mb-3 md:mb-4"
-            style={{
-              fontSize: 'clamp(0.78rem, 1.15vw, 0.88rem)',
-              color: 'rgba(196,186,176,0.65)',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              textShadow: '0 1px 8px rgba(0,0,0,0.9)',
-            }}
+          {/* Cinematic typewriter — executive dispatch status */}
+          <motion.div
+            variants={fadeIn}
+            className="mb-3 flex items-center gap-3"
           >
-            {t.hero.manifesto}
-          </motion.p>
+            <span
+              className="ea-label"
+              style={{ color: 'rgba(196,186,176,0.35)', letterSpacing: '0.22em', textShadow: '0 1px 6px rgba(0,0,0,0.9)' }}
+            >
+              ——
+            </span>
+            <TypewriterLine
+              phrases={t.hero.typewriterPhrases as unknown as string[]}
+              typeSpeed={62}
+              pauseDuration={2900}
+              initialDelay={2400}
+              style={{
+                fontFamily: 'var(--font-primary)',
+                fontWeight: 300,
+                fontSize: 'clamp(0.72rem, 1.1vw, 0.82rem)',
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'rgba(196,186,176,0.70)',
+                textShadow: '0 1px 8px rgba(0,0,0,0.95)',
+                minHeight: '1.2em',
+              }}
+            />
+          </motion.div>
 
-          {/* Sub */}
+          {/* Sub — one-line descriptor, static, for context + SEO */}
           <motion.p
             variants={fadeUp}
             className="font-light leading-relaxed mb-10 md:mb-14 max-w-xs md:max-w-sm text-balance"
             style={{
-              fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)',
-              color: 'rgba(184,184,184,0.90)',
+              fontSize: 'clamp(0.82rem, 1.3vw, 0.92rem)',
+              color: 'rgba(184,184,184,0.82)',
               letterSpacing: '0.01em',
               textShadow: '0 1px 12px rgba(0,0,0,0.9)',
             }}

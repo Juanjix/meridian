@@ -78,7 +78,7 @@ export function VehicleExperienceSection() {
           animate={inView ? 'visible' : 'hidden'}
           className="relative z-10 h-full flex flex-col justify-end max-w-7xl mx-auto px-6 md:px-12 pb-12 md:pb-16"
         >
-          <motion.div variants={fadeIn} className="ea-label text-silver/55 mb-4 md:mb-5">
+          <motion.div variants={fadeIn} className="ea-label mb-4 md:mb-5">
             {t.vehicle.label}
           </motion.div>
           <motion.div
@@ -198,7 +198,7 @@ export function VehicleExperienceSection() {
             animate={inView ? 'visible' : 'hidden'}
             className="lg:pt-6"
           >
-            <motion.div variants={fadeIn} className="ea-label text-champagne/50 mb-5">
+            <motion.div variants={fadeIn} className="ea-label mb-5" style={{ color: '#C4BAB0' }}>
               {t.vehicle.eyebrow}
             </motion.div>
 
@@ -234,7 +234,8 @@ export function VehicleExperienceSection() {
 
             <motion.div
               variants={fadeIn}
-              className="mt-10 text-2xs tracking-[0.18em] uppercase text-silver/40 font-light"
+              className="mt-10 text-2xs tracking-[0.18em] uppercase font-light"
+              style={{ color: '#9A9A9A' }}
             >
               {t.vehicle.note}
             </motion.div>

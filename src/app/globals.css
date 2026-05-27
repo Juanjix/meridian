@@ -36,6 +36,7 @@
 
   html {
     scroll-behavior: auto; /* Lenis handles smooth scrolling */
+    font-size: 110%;       /* Global +10% type scale — all rem values scale proportionally */
   }
 
   body {
@@ -69,7 +70,8 @@
 
   /* Eyebrow / label */
   .ea-label {
-    @apply text-2xs tracking-[0.22em] uppercase font-light text-silver-mid;
+    @apply text-2xs tracking-[0.22em] uppercase font-light;
+    color: #9A9A9A; /* silver-mid boosted for WCAG AA on dark backgrounds */
   }
 
   /* Champagne rule */
