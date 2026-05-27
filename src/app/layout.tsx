@@ -4,8 +4,11 @@ import { LanguageProvider } from '@/context/LanguageContext'
 import { LenisProvider } from '@/components/providers/LenisProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://millenniumtravel.com.ar'),
+  metadataBase: new URL(siteUrl),
   title: 'Millennium Travel — Hospitalidad Ejecutiva en Buenos Aires',
   description: 'Hospitalidad ejecutiva terrestre para ejecutivos, corporaciones y experiencias VIP en Buenos Aires. Recepción personalizada, hospitalidad premium y protocolo concierge.',
   keywords: [
@@ -35,7 +38,7 @@ export const metadata: Metadata = {
     siteName: 'Millennium Travel',
     locale: 'es_AR',
     type: 'website',
-    url: 'https://millenniumtravel.com.ar',
+    url: siteUrl,
   },
   twitter: {
     card: 'summary_large_image',

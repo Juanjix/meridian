@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Millennium Travel — Hospitalidad Ejecutiva en Buenos Aires'
+export const alt = 'Millennium Travel — Tu llegada, comienza aquí. Hospitalidad ejecutiva en Buenos Aires.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
