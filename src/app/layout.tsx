@@ -4,15 +4,48 @@ import { LanguageProvider } from '@/context/LanguageContext'
 import { LenisProvider } from '@/components/providers/LenisProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
+
 export const metadata: Metadata = {
-  title: 'Executive Arrival — Executive Ground Hospitality',
-  description: 'Executive ground hospitality designed for premium corporate and VIP experiences. Buenos Aires.',
+  metadataBase: new URL(siteUrl),
+  title: 'Millennium Travel — Hospitalidad Ejecutiva en Buenos Aires',
+  description: 'Hospitalidad ejecutiva terrestre para ejecutivos, corporaciones y experiencias VIP en Buenos Aires. Recepción personalizada, hospitalidad premium y protocolo concierge.',
+  keywords: [
+    'hospitalidad ejecutiva Buenos Aires',
+    'remis ejecutivo aeropuerto',
+    'VIP transfer Buenos Aires',
+    'concierge aeropuerto EZE',
+    'membresía ejecutiva Argentina',
+    'corporate hospitality Buenos Aires',
+  ],
+  authors: [{ name: 'Millennium Travel' }],
+  creator: 'Millennium Travel',
+  publisher: 'Millennium Travel',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
-    title: 'Executive Arrival — Executive Ground Hospitality',
-    description: 'Your Arrival, Handled.',
-    siteName: 'Executive Arrival',
-    locale: 'en_US',
+    title: 'Millennium Travel — Tu llegada, comienza aquí.',
+    description: 'Hospitalidad ejecutiva terrestre para ejecutivos, corporaciones y experiencias VIP en Buenos Aires. Recepción OLED personalizada, hospitalidad premium, protocolo concierge.',
+    siteName: 'Millennium Travel',
+    locale: 'es_AR',
     type: 'website',
+    url: siteUrl,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Millennium Travel — Tu llegada, comienza aquí.',
+    description: 'Hospitalidad ejecutiva terrestre para ejecutivos y corporaciones en Buenos Aires. Membresía Founders disponible.',
+    creator: '@millenniumtravel',
+    site: '@millenniumtravel',
   },
 }
 
@@ -22,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <link
           rel="preconnect"

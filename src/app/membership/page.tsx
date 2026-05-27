@@ -1,7 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import { Check } from 'lucide-react'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { useLanguage } from '@/context/LanguageContext'
 import {
   FOUNDERS_AVAILABLE,
   FOUNDERS_TOTAL,
@@ -9,38 +12,10 @@ import {
   EXPERIENCES_PER_MEMBERSHIP,
 } from '@/lib/utils'
 
-const features = [
-  {
-    title: `${EXPERIENCES_PER_MEMBERSHIP} executive airport experiences`,
-    sub: 'EZE · AEP · Arrivals & departures · No expiration',
-  },
-  {
-    title: 'Personalized OLED reception sign',
-    sub: "Passenger's name displayed at every experience",
-  },
-  {
-    title: 'Premium on-board hospitality',
-    sub: 'Champagne, mineral water, curated snacks. Customizable per experience.',
-  },
-  {
-    title: '100% transferable, no restrictions',
-    sub: 'Executives, partners, clients, family, artists, guests',
-  },
-  {
-    title: 'Absolute reservation priority',
-    sub: 'Guaranteed confirmation with 2-hour advance notice',
-  },
-  {
-    title: 'Direct concierge attention',
-    sub: 'Executive WhatsApp · No bots · No wait',
-  },
-  {
-    title: 'Hotel partner network access',
-    sub: 'Direct coordination with hotel reception',
-  },
-]
-
 export default function MembershipPage() {
+  const { t } = useLanguage()
+  const m = t.membershipPage
+
   return (
     <>
       <Navbar />
@@ -49,17 +24,17 @@ export default function MembershipPage() {
 
           {/* Header */}
           <div className="max-w-xl mb-16">
-            <div className="ea-label text-silver/60 mb-5">Founders Edition · Limited</div>
+            <div className="ea-label text-silver/60 mb-5">{m.eyebrow}</div>
             <h1
               className="font-light text-warm-white leading-[0.93] mb-6"
               style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', letterSpacing: '-0.04em' }}
             >
-              Executive Airport<br />
-              <span className="text-silver-light">Experience</span>
+              {m.headline1}<br />
+              <span className="text-silver-light">{m.headline2}</span>
             </h1>
             <div className="w-10 h-px bg-champagne/40" />
             <p className="mt-6 text-sm text-silver-mid font-light leading-relaxed">
-              A membership designed for those whose time is worth more than money.
+              {t.founders.sub}
             </p>
           </div>
 
@@ -72,13 +47,13 @@ export default function MembershipPage() {
               {/* Card header */}
               <div className="p-6 md:p-8 border-b border-silver/10">
                 <div className="text-2xs tracking-[0.22em] uppercase text-champagne/50 mb-4">
-                  Executive Arrival
+                  {m.cardBadge}
                 </div>
                 <div className="text-lg tracking-[0.1em] uppercase text-warm-white font-light mb-1">
-                  Founder Member
+                  {m.cardTitle}
                 </div>
                 <div className="text-2xs tracking-widest uppercase text-silver/40 mb-6">
-                  Executive Airport Experience · Founders Edition
+                  {m.cardSub}
                 </div>
                 <div className="flex items-baseline gap-3">
                   <span
@@ -88,7 +63,7 @@ export default function MembershipPage() {
                     USD {MEMBERSHIP_PRICE_USD.toLocaleString()}
                   </span>
                   <span className="text-xs text-silver font-light">
-                    one-time · {EXPERIENCES_PER_MEMBERSHIP} experiences included
+                    {m.priceNote(EXPERIENCES_PER_MEMBERSHIP)}
                   </span>
                 </div>
               </div>
@@ -96,15 +71,15 @@ export default function MembershipPage() {
               {/* Features */}
               <div className="p-6 md:p-8">
                 <div className="flex flex-col gap-5">
-                  {features.map((f) => (
-                    <div key={f.title} className="flex gap-4">
+                  {m.features.map((f, i) => (
+                    <div key={i} className="flex gap-4">
                       <Check
                         size={13}
                         className="text-champagne/70 mt-0.5 flex-shrink-0"
                         strokeWidth={1.5}
                       />
                       <div>
-                        <div className="text-sm text-warm-white font-light">{f.title}</div>
+                        <div className="text-sm text-warm-white font-light">{f.title(EXPERIENCES_PER_MEMBERSHIP)}</div>
                         <div className="text-2xs text-silver/50 mt-0.5 font-light">{f.sub}</div>
                       </div>
                     </div>
@@ -116,9 +91,9 @@ export default function MembershipPage() {
               <div className="px-6 md:px-8 pb-6 md:pb-8">
                 <div className="border-t border-silver/10 pt-6">
                   <div className="flex justify-between items-center mb-3">
-                    <span className="text-2xs text-silver/50 tracking-wider uppercase">Availability</span>
+                    <span className="text-2xs text-silver/50 tracking-wider uppercase">{m.availability}</span>
                     <span className="text-2xs text-silver-light">
-                      {FOUNDERS_AVAILABLE} of {FOUNDERS_TOTAL} remaining
+                      {m.availabilityCount(FOUNDERS_AVAILABLE, FOUNDERS_TOTAL)}
                     </span>
                   </div>
                   <div className="h-px bg-silver/10 relative">
@@ -137,31 +112,25 @@ export default function MembershipPage() {
             <div className="lg:col-span-2 flex flex-col gap-4">
               <div className="bg-carbon border border-silver/10 p-7">
                 <div className="text-sm font-light text-warm-white mb-1">
-                  Acquire your founders membership
+                  {m.sidebarTitle}
                 </div>
                 <div className="text-xs text-silver-mid font-light leading-relaxed mb-7">
-                  Complete the purchase form. We accept Mercado Pago,
-                  international card (Stripe), and bank transfer.
+                  {m.sidebarDesc}
                 </div>
                 <Link href="/checkout" className="btn-ea-primary w-full justify-center mb-3 active:opacity-70">
-                  Acquire Membership
+                  {m.ctaAcquire}
                 </Link>
                 <a
                   href="https://wa.me/5491100000000"
                   className="btn-ea-ghost w-full justify-center text-[11px] active:opacity-70"
                 >
-                  Inquire via WhatsApp
+                  {m.ctaWhatsapp}
                 </a>
               </div>
 
               <div className="bg-carbon border border-silver/10 p-7">
                 <div className="flex flex-col gap-4">
-                  {[
-                    'No contracts or automatic renewals',
-                    'Experiences have no expiration date',
-                    'Transferable to anyone, no restrictions',
-                    'Direct concierge support via WhatsApp',
-                  ].map((item) => (
+                  {m.guarantees.map((item) => (
                     <div key={item} className="flex items-start gap-3">
                       <span className="text-champagne/50 text-xs mt-0.5 flex-shrink-0">—</span>
                       <span className="text-2xs text-silver font-light leading-relaxed">{item}</span>
@@ -175,7 +144,7 @@ export default function MembershipPage() {
                   className="font-light text-champagne/80 leading-relaxed"
                   style={{ fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', letterSpacing: '-0.01em' }}
                 >
-                  "The journey begins before entering the vehicle."
+                  {m.quote}
                 </div>
               </div>
             </div>

@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Minus, Plus } from 'lucide-react'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { useLanguage } from '@/context/LanguageContext'
 import {
   bookingStep1Schema,
   bookingStep2Schema,
@@ -15,15 +16,16 @@ import {
   type BookingStep2Data,
   type BookingStep3Data,
 } from '@/lib/validations'
-import { cn, formatDate, formatTime, AIRPORTS, CATERING_LABELS, generateCode } from '@/lib/utils'
+import { cn, formatDate, formatTime, AIRPORTS, generateCode } from '@/lib/utils'
 import type { Airport, CateringPreference } from '@/types'
-
-const STEPS = ['Flight', 'Passenger', 'Preferences', 'Confirm']
 
 type AllBookingData = BookingStep1Data & BookingStep2Data & BookingStep3Data
 
 export default function BookingPage() {
   const router = useRouter()
+  const { t } = useLanguage()
+  const b = t.bookingPage
+
   const [step, setStep] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const [allData, setAllData] = useState<Partial<AllBookingData>>({
@@ -74,18 +76,18 @@ export default function BookingPage() {
 
           {/* Header */}
           <div className="mb-12">
-            <div className="ea-label text-silver/60 mb-4">Reserve</div>
+            <div className="ea-label text-silver/60 mb-4">{b.eyebrow}</div>
             <h1
               className="font-light text-warm-white"
               style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', letterSpacing: '-0.04em' }}
             >
-              Schedule an Experience
+              {b.headline}
             </h1>
           </div>
 
           {/* Stepper */}
           <div className="grid grid-cols-4 gap-1 mb-10 md:mb-12">
-            {STEPS.map((label, i) => {
+            {b.steps.map((label, i) => {
               const n = i + 1
               return (
                 <div key={label} className="text-center">
@@ -123,7 +125,7 @@ export default function BookingPage() {
             {step === 1 && (
               <form onSubmit={form1.handleSubmit(onStep1)} className="flex flex-col gap-7">
                 <div>
-                  <label className="ea-label mb-4 block">Airport</label>
+                  <label className="ea-label mb-4 block">{b.step1.airportLabel}</label>
                   <div className="grid grid-cols-2 gap-3">
                     {(Object.entries(AIRPORTS) as [Airport, string][]).map(([code, name]) => (
                       <button
@@ -154,14 +156,14 @@ export default function BookingPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="ea-label mb-2 block">Flight date *</label>
+                    <label className="ea-label mb-2 block">{b.step1.dateLabel} *</label>
                     <input {...form1.register('flightDate')} type="date" className="input-ea" />
                     {form1.formState.errors.flightDate && (
                       <p className="text-2xs text-red-400 mt-1.5">{form1.formState.errors.flightDate.message}</p>
                     )}
                   </div>
                   <div>
-                    <label className="ea-label mb-2 block">Arrival time *</label>
+                    <label className="ea-label mb-2 block">{b.step1.timeLabel} *</label>
                     <input {...form1.register('flightTime')} type="time" className="input-ea" />
                     {form1.formState.errors.flightTime && (
                       <p className="text-2xs text-red-400 mt-1.5">{form1.formState.errors.flightTime.message}</p>
@@ -170,21 +172,25 @@ export default function BookingPage() {
                 </div>
 
                 <div>
-                  <label className="ea-label mb-2 block">Flight number <span className="normal-case">(optional)</span></label>
-                  <input {...form1.register('flightNumber')} className="input-ea" placeholder="e.g. AA 930 · LA 406" />
-                  <p className="text-2xs text-silver/50 mt-1.5">Allows us to monitor delays in real time.</p>
+                  <label className="ea-label mb-2 block">
+                    {b.step1.flightLabel} <span className="normal-case">{b.step1.optional}</span>
+                  </label>
+                  <input {...form1.register('flightNumber')} className="input-ea" placeholder={b.step1.flightPlaceholder} />
+                  <p className="text-2xs text-silver/50 mt-1.5">{b.step1.flightNote}</p>
                 </div>
 
                 <div>
-                  <label className="ea-label mb-2 block">Final destination *</label>
-                  <input {...form1.register('destination')} className="input-ea" placeholder="Hotel, address, or company" />
+                  <label className="ea-label mb-2 block">{b.step1.destLabel} *</label>
+                  <input {...form1.register('destination')} className="input-ea" placeholder={b.step1.destPlaceholder} />
                   {form1.formState.errors.destination && (
                     <p className="text-2xs text-red-400 mt-1.5">{form1.formState.errors.destination.message}</p>
                   )}
                 </div>
 
                 <div className="pt-2">
-                  <button type="submit" className="btn-ea-primary w-full sm:w-auto justify-center active:opacity-70">Continue →</button>
+                  <button type="submit" className="btn-ea-primary w-full sm:w-auto justify-center active:opacity-70">
+                    {b.step1.continue}
+                  </button>
                 </div>
               </form>
             )}
@@ -193,20 +199,20 @@ export default function BookingPage() {
             {step === 2 && (
               <form onSubmit={form2.handleSubmit(onStep2)} className="flex flex-col gap-7">
                 <div>
-                  <label className="ea-label mb-2 block">Passenger name *</label>
+                  <label className="ea-label mb-2 block">{b.step2.nameLabel} *</label>
                   <input
                     {...form2.register('passengerName')}
                     className="input-ea"
-                    placeholder="Full name as it should appear on the OLED sign"
+                    placeholder={b.step2.namePlaceholder}
                   />
-                  <p className="text-2xs text-silver/50 mt-1.5">This name will be displayed on the OLED sign at the airport.</p>
+                  <p className="text-2xs text-silver/50 mt-1.5">{b.step2.nameNote}</p>
                   {form2.formState.errors.passengerName && (
                     <p className="text-2xs text-red-400 mt-1.5">{form2.formState.errors.passengerName.message}</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="ea-label mb-4 block">Number of passengers</label>
+                  <label className="ea-label mb-4 block">{b.step2.countLabel}</label>
                   <div className="flex items-center gap-5">
                     <button
                       type="button"
@@ -228,19 +234,25 @@ export default function BookingPage() {
                     >
                       <Plus size={14} />
                     </button>
-                    <span className="text-xs text-silver font-light">passenger(s)</span>
+                    <span className="text-xs text-silver font-light">{b.step2.passengerUnit}</span>
                   </div>
                 </div>
 
                 <div>
-                  <label className="ea-label mb-2 block">Membership code <span className="normal-case">(optional)</span></label>
-                  <input {...form2.register('membershipCode')} className="input-ea" placeholder="e.g. MRD-F-007" />
-                  <p className="text-2xs text-silver/50 mt-1.5">If the passenger is not the holder, enter the membership code that authorizes the service.</p>
+                  <label className="ea-label mb-2 block">
+                    {b.step2.codeLabel} <span className="normal-case">{b.step2.optional}</span>
+                  </label>
+                  <input {...form2.register('membershipCode')} className="input-ea" placeholder={b.step2.codePlaceholder} />
+                  <p className="text-2xs text-silver/50 mt-1.5">{b.step2.codeNote}</p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <button type="button" onClick={() => setStep(1)} className="btn-ea-ghost active:opacity-70">← Back</button>
-                  <button type="submit" className="btn-ea-primary sm:flex-1 justify-center active:opacity-70">Continue →</button>
+                  <button type="button" onClick={() => setStep(1)} className="btn-ea-ghost active:opacity-70">
+                    {b.step2.back}
+                  </button>
+                  <button type="submit" className="btn-ea-primary sm:flex-1 justify-center active:opacity-70">
+                    {b.step2.continue}
+                  </button>
                 </div>
               </form>
             )}
@@ -249,9 +261,9 @@ export default function BookingPage() {
             {step === 3 && (
               <form onSubmit={form3.handleSubmit(onStep3)} className="flex flex-col gap-7">
                 <div>
-                  <label className="ea-label mb-4 block">Catering preferences</label>
+                  <label className="ea-label mb-4 block">{b.step3.cateringLabel}</label>
                   <div className="flex flex-col gap-2">
-                    {(Object.entries(CATERING_LABELS) as [CateringPreference, string][]).map(([id, label]) => (
+                    {(Object.keys(b.step3.catering) as CateringPreference[]).map((id) => (
                       <label
                         key={id}
                         className={cn(
@@ -267,25 +279,33 @@ export default function BookingPage() {
                           value={id}
                           className="accent-champagne"
                         />
-                        <span className="text-xs text-warm-white font-light">{label}</span>
+                        <span className="text-xs text-warm-white font-light">
+                          {b.step3.catering[id]}
+                        </span>
                       </label>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <label className="ea-label mb-2 block">Additional notes <span className="normal-case">(optional)</span></label>
+                  <label className="ea-label mb-2 block">
+                    {b.step3.notesLabel} <span className="normal-case">{b.step3.optional}</span>
+                  </label>
                   <textarea
                     {...form3.register('cateringNotes')}
                     rows={3}
                     className="input-ea resize-none"
-                    placeholder="Special preferences, driver instructions, hotel coordination..."
+                    placeholder={b.step3.notesPlaceholder}
                   />
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <button type="button" onClick={() => setStep(2)} className="btn-ea-ghost active:opacity-70">← Back</button>
-                  <button type="submit" className="btn-ea-primary sm:flex-1 justify-center active:opacity-70">Review booking →</button>
+                  <button type="button" onClick={() => setStep(2)} className="btn-ea-ghost active:opacity-70">
+                    {b.step3.back}
+                  </button>
+                  <button type="submit" className="btn-ea-primary sm:flex-1 justify-center active:opacity-70">
+                    {b.step3.review}
+                  </button>
                 </div>
               </form>
             )}
@@ -294,17 +314,17 @@ export default function BookingPage() {
             {step === 4 && (
               <div className="flex flex-col gap-8">
                 <div>
-                  <div className="ea-label mb-5">Experience Summary</div>
+                  <div className="ea-label mb-5">{b.step4.summaryLabel}</div>
                   <div className="border border-silver/10 divide-y divide-silver/10">
                     {[
-                      ['Airport', `${allData.airport} — ${AIRPORTS[allData.airport as Airport] ?? ''}`],
-                      ['Date & time', `${formatDate(allData.flightDate ?? '')} · ${formatTime(allData.flightTime ?? '')}`],
-                      ['Flight', allData.flightNumber ?? '—'],
-                      ['Destination', allData.destination ?? '—'],
-                      ['Passenger / Sign', allData.passengerName ?? '—'],
-                      ['Passengers', String(allData.passengerCount ?? 1)],
-                      ['Catering', CATERING_LABELS[allData.cateringPreference as CateringPreference] ?? '—'],
-                      ['Remaining experiences', '9 of 10'],
+                      [b.step4.keys.airport, `${allData.airport} — ${AIRPORTS[allData.airport as Airport] ?? ''}`],
+                      [b.step4.keys.dateTime, `${formatDate(allData.flightDate ?? '')} · ${formatTime(allData.flightTime ?? '')}`],
+                      [b.step4.keys.flight, allData.flightNumber ?? '—'],
+                      [b.step4.keys.destination, allData.destination ?? '—'],
+                      [b.step4.keys.passengerSign, allData.passengerName ?? '—'],
+                      [b.step4.keys.passengers, String(allData.passengerCount ?? 1)],
+                      [b.step4.keys.catering, b.step3.catering[allData.cateringPreference as CateringPreference] ?? '—'],
+                      [b.step4.keys.remaining, '9 of 10'],
                     ].map(([k, v]) => (
                       <div key={k} className="flex justify-between items-start px-5 py-4 text-xs">
                         <span className="text-silver font-light">{k}</span>
@@ -315,17 +335,19 @@ export default function BookingPage() {
                 </div>
 
                 <div className="bg-graphite border border-silver/10 p-5 text-2xs text-silver leading-relaxed">
-                  You will receive confirmation via WhatsApp within 15 minutes. The chauffeur will contact you 30 minutes before the flight arrives.
+                  {b.step4.note}
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <button type="button" onClick={() => setStep(3)} className="btn-ea-ghost active:opacity-70">← Back</button>
+                  <button type="button" onClick={() => setStep(3)} className="btn-ea-ghost active:opacity-70">
+                    {b.step4.back}
+                  </button>
                   <button
                     onClick={onConfirm}
                     disabled={isLoading}
                     className="btn-ea-primary sm:flex-1 justify-center active:opacity-70"
                   >
-                    {isLoading ? 'Confirming...' : 'Confirm Experience →'}
+                    {isLoading ? b.step4.confirming : b.step4.confirm}
                   </button>
                 </div>
               </div>

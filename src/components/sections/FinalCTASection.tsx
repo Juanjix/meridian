@@ -11,7 +11,6 @@ export function FinalCTASection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-8% 0px' })
 
-  // Subtle background parallax
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const bgScale = useTransform(scrollYProgress, [0, 1], [1.04, 1.0])
 
@@ -20,17 +19,15 @@ export function FinalCTASection() {
       ref={ref}
       className="relative bg-obsidian py-28 md:py-72 overflow-hidden noise-overlay vignette"
     >
-      {/* Background depth — subtle scale parallax */}
-      <motion.div
-        style={{ scale: bgScale }}
-        className="absolute inset-0 gpu"
-      >
+      {/* Background depth */}
+      <motion.div style={{ scale: bgScale }} className="absolute inset-0 gpu">
         <div
           className="absolute inset-0"
           style={{
             background: [
-              'radial-gradient(ellipse 100% 70% at 50% 50%, #141414 0%, #080808 68%)',
-              'radial-gradient(ellipse 40% 40% at 80% 20%, rgba(26,26,26,0.6) 0%, transparent 60%)',
+              'radial-gradient(ellipse 100% 70% at 50% 50%, #0d0d0d 0%, #050505 68%)',
+              'radial-gradient(ellipse 40% 40% at 80% 20%, rgba(22,22,22,0.7) 0%, transparent 60%)',
+              'radial-gradient(ellipse 30% 30% at 20% 80%, rgba(18,18,18,0.5) 0%, transparent 55%)',
             ].join(', '),
           }}
         />
@@ -49,12 +46,12 @@ export function FinalCTASection() {
           {/* Large display headline */}
           <motion.h2
             variants={fadeUp}
-            className="font-light text-warm-white leading-[0.88] mb-14"
-            style={{ fontSize: 'clamp(3rem, 8.5vw, 7.5rem)', letterSpacing: '-0.045em' }}
+            className="font-light text-warm-white leading-[0.88] mb-12 md:mb-14"
+            style={{ fontSize: 'clamp(2.8rem, 8.5vw, 7.5rem)', letterSpacing: '-0.045em' }}
           >
             <span className="block">{t.finalCta.headline1}</span>
             <span className="block">{t.finalCta.headline2}</span>
-            {/* Outlined / ghost text — cinematic depth */}
+            {/* Ghost / outlined text */}
             <span
               className="block"
               style={{
@@ -80,7 +77,10 @@ export function FinalCTASection() {
           </motion.p>
 
           <motion.div variants={fadeUp}>
-            <Link href="/membership" className="btn-ea-primary px-10 md:px-14 py-4 md:py-5 text-[11px] w-full sm:w-auto active:opacity-70">
+            <Link
+              href="/membership"
+              className="btn-ea-primary px-10 md:px-14 py-4 md:py-5 text-[11px] w-full sm:w-auto active:opacity-70"
+            >
               {t.finalCta.cta}
             </Link>
           </motion.div>

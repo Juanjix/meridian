@@ -36,6 +36,7 @@
 
   html {
     scroll-behavior: auto; /* Lenis handles smooth scrolling */
+    font-size: 110%;       /* Global +10% type scale — all rem values scale proportionally */
   }
 
   body {
@@ -69,7 +70,8 @@
 
   /* Eyebrow / label */
   .ea-label {
-    @apply text-2xs tracking-[0.22em] uppercase font-light text-silver-mid;
+    @apply text-2xs tracking-[0.22em] uppercase font-light;
+    color: #9A9A9A; /* silver-mid boosted for WCAG AA on dark backgrounds */
   }
 
   /* Champagne rule */
@@ -194,13 +196,41 @@
 
   /* ── Depth utilities ──────────────────────────────────────────────────────── */
 
-  /* Atmospheric gradient — adds layered depth to dark sections */
   .depth-radial {
     background: radial-gradient(ellipse 110% 80% at 65% 35%, #1a1a1a 0%, #080808 65%);
   }
 
   .depth-bottom {
     background: linear-gradient(to top, #080808 0%, transparent 100%);
+  }
+
+  /* ── Section background alternation ──────────────────────────────────────── */
+
+  /* Subtle atmospheric line — separates dark sections */
+  .section-divider {
+    @apply h-px;
+    background: linear-gradient(to right, transparent, rgba(90,90,90,0.12), transparent);
+  }
+
+  /* ── Video hero ───────────────────────────────────────────────────────────── */
+
+  /* When a hero video loads, it sits above the poster/image fallback */
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ── Manifesto text — large editorial display ─────────────────────────────── */
+
+  .text-manifesto {
+    @apply font-light text-warm-white;
+    font-size: clamp(2rem, 6vw, 5.5rem);
+    letter-spacing: -0.04em;
+    line-height: 0.93;
   }
 }
 

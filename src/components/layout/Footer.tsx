@@ -15,7 +15,7 @@ export function Footer() {
           {/* Brand */}
           <div className="max-w-xs">
             <div className="text-[11px] tracking-[0.28em] uppercase font-light text-warm-white mb-3">
-              Executive Arrival
+              Millennium Travel
             </div>
             <div className="text-2xs tracking-[0.18em] uppercase text-silver mb-1">
               {t.footer.tagline}

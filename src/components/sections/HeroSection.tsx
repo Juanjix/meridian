@@ -5,26 +5,28 @@ import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 import { fadeUp, fadeIn, staggerSlow, EASE_CINEMA, EASE_APPLE } from '@/lib/animations'
+import { TypewriterLine } from '@/components/ui/TypewriterLine'
 import { FOUNDERS_AVAILABLE, FOUNDERS_TOTAL } from '@/lib/utils'
 
 export function HeroSection() {
   const { t } = useLanguage()
   const { scrollY } = useScroll()
 
-  // Parallax: background drifts up — very subtle, cinematic
+  // Parallax — image drifts slightly slower than scroll
   const bgY = useTransform(scrollY, [0, 900], [0, -130])
-  // Content fades as you leave the hero
+  // Content drifts and fades as user leaves hero
   const contentOpacity = useTransform(scrollY, [0, 450], [1, 0.25])
   const contentY = useTransform(scrollY, [0, 450], [0, 30])
 
   return (
     <section className="relative min-h-screen bg-obsidian flex flex-col justify-end overflow-hidden noise-overlay vignette">
 
-      {/* ── Parallax background image ───────────────────────────────────────── */}
+      {/* ── Parallax background ─────────────────────────────────────────── */}
       <motion.div
         style={{ y: bgY }}
         className="absolute inset-[-14%] gpu"
       >
+        {/* Base image — always visible, fallback when no video */}
         <Image
           src="/vehicles/van-exterior.jpg"
           fill
@@ -32,32 +34,41 @@ export function HeroSection() {
           quality={95}
           sizes="100vw"
           className="object-cover object-center"
-          alt="Executive Arrival — Toyota HiAce"
+          alt="Millennium Travel — Executive Cabin"
         />
 
-        {/* Base tint — uniform coverage across entire image */}
+        {/* Cinematic video overlay — covers image when available */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          aria-hidden="true"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+
+        {/* Base tint — uniform coverage */}
         <div className="absolute inset-0 bg-obsidian/55" />
 
-        {/* Layered cinematic overlay */}
+        {/* Layered cinematic overlays */}
         <div
           className="absolute inset-0"
           style={{
             background: [
-              /* Top darkness — strong nav + eyebrow protection */
               'linear-gradient(180deg, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.72) 25%, rgba(8,8,8,0.40) 50%, transparent 70%)',
-              /* Bottom darkness — content readability */
               'linear-gradient(0deg, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.75) 30%, rgba(8,8,8,0.30) 55%, transparent 70%)',
-              /* Center left — extra depth behind text block */
               'radial-gradient(ellipse 80% 70% at 15% 65%, rgba(8,8,8,0.55) 0%, transparent 65%)',
             ].join(', '),
           }}
         />
       </motion.div>
 
-      {/* ── Atmospheric edge light — single horizontal line ─────────────────── */}
+      {/* ── Top atmospheric line ────────────────────────────────────────── */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-champagne/18 to-transparent z-10" />
 
-      {/* ── Content ─────────────────────────────────────────────────────────── */}
+      {/* ── Content ─────────────────────────────────────────────────────── */}
       <motion.div
         style={{ opacity: contentOpacity, y: contentY }}
         className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-16 md:pb-28 pt-28 md:pt-40 w-full"
@@ -81,7 +92,7 @@ export function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Headline — large display type */}
+          {/* Main headline */}
           <motion.h1
             variants={fadeUp}
             className="font-light leading-[0.92] text-warm-white mb-8 md:mb-10"
@@ -92,27 +103,50 @@ export function HeroSection() {
             }}
           >
             <span className="block">{t.hero.headline1}</span>
-            <span
-              className="block"
-              style={{ color: 'rgba(240,236,230,0.75)' }}
-            >
+            <span className="block" style={{ color: 'rgba(240,236,230,0.75)' }}>
               {t.hero.headline2}
             </span>
           </motion.h1>
 
-          {/* Divider line */}
+          {/* Divider */}
+          <motion.div variants={fadeIn} className="w-8 md:w-10 h-px bg-champagne/30 mb-8 md:mb-10" />
+
+          {/* Cinematic typewriter — executive dispatch status */}
           <motion.div
             variants={fadeIn}
-            className="w-8 md:w-10 h-px bg-champagne/30 mb-8 md:mb-10"
-          />
+            className="mb-3 flex items-center gap-3"
+          >
+            <span
+              className="ea-label"
+              style={{ color: 'rgba(196,186,176,0.35)', letterSpacing: '0.22em', textShadow: '0 1px 6px rgba(0,0,0,0.9)' }}
+            >
+              ——
+            </span>
+            <TypewriterLine
+              phrases={t.hero.typewriterPhrases as unknown as string[]}
+              typeSpeed={62}
+              pauseDuration={2900}
+              initialDelay={2400}
+              style={{
+                fontFamily: 'var(--font-primary)',
+                fontWeight: 300,
+                fontSize: 'clamp(0.72rem, 1.1vw, 0.82rem)',
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'rgba(196,186,176,0.70)',
+                textShadow: '0 1px 8px rgba(0,0,0,0.95)',
+                minHeight: '1.2em',
+              }}
+            />
+          </motion.div>
 
-          {/* Subline */}
+          {/* Sub — one-line descriptor, static, for context + SEO */}
           <motion.p
             variants={fadeUp}
             className="font-light leading-relaxed mb-10 md:mb-14 max-w-xs md:max-w-sm text-balance"
             style={{
-              fontSize: 'clamp(0.85rem, 1.4vw, 0.95rem)',
-              color: 'rgba(184,184,184,0.90)',
+              fontSize: 'clamp(0.82rem, 1.3vw, 0.92rem)',
+              color: 'rgba(184,184,184,0.82)',
               letterSpacing: '0.01em',
               textShadow: '0 1px 12px rgba(0,0,0,0.9)',
             }}
@@ -125,18 +159,18 @@ export function HeroSection() {
             <Link href="/membership" className="btn-ea-primary w-full sm:w-auto active:opacity-70">
               {t.hero.cta1}
             </Link>
-            <Link href="/#experience" className="btn-ea-ghost w-full sm:w-auto active:opacity-70">
+            <Link href="mailto:hola@millenniumtravel.com.ar" className="btn-ea-ghost w-full sm:w-auto active:opacity-70">
               {t.hero.cta2}
             </Link>
           </motion.div>
 
-          {/* Availability dots */}
+          {/* Availability indicator */}
           <motion.div variants={fadeIn} className="mt-10 md:mt-14 flex items-center gap-4">
             <div className="flex gap-[3px]">
               {Array.from({ length: FOUNDERS_TOTAL }).map((_, i) => (
                 <div
                   key={i}
-                  className={`w-[3px] h-[3px] rounded-full transition-opacity duration-300 ${
+                  className={`w-[3px] h-[3px] rounded-full ${
                     i < FOUNDERS_TOTAL - FOUNDERS_AVAILABLE
                       ? 'bg-champagne/70'
                       : 'bg-silver/18'
@@ -151,7 +185,7 @@ export function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* ── Scroll indicator ─────────────────────────────────────────────────── */}
+      {/* ── Scroll indicator ────────────────────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
