@@ -1,41 +1,47 @@
+'use client'
+
 import Link from 'next/link'
 import { CheckCircle } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { useLanguage } from '@/context/LanguageContext'
 
-export default function BookingConfirmedPage({
-  searchParams,
-}: {
-  searchParams: { code?: string }
-}) {
-  const code = searchParams.code ?? 'MRD-2025-001'
+export default function BookingConfirmedPage() {
+  const searchParams = useSearchParams()
+  const code = searchParams.get('code') ?? 'MRD-2025-001'
+  const { t } = useLanguage()
+  const c = t.confirmedBooking
 
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-ivory pt-24 flex items-center">
+      <main className="min-h-screen bg-obsidian pt-24 flex items-center">
         <div className="max-w-xl mx-auto px-6 py-16 text-center">
-          <CheckCircle size={40} className="text-gold mx-auto mb-6" strokeWidth={1} />
 
-          <h1 className="text-3xl font-serif font-light text-midnight mb-3">
-            Experiencia confirmada.
+          <CheckCircle size={40} className="text-champagne/70 mx-auto mb-6" strokeWidth={1} />
+
+          <h1
+            className="font-light text-warm-white mb-4"
+            style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', letterSpacing: '-0.04em' }}
+          >
+            {c.headline}
           </h1>
-          <p className="text-sm text-slate-mid font-light leading-relaxed mb-10 max-w-sm mx-auto">
-            Tu reserva fue recibida. Recibirás confirmación por WhatsApp
-            en los próximos 15 minutos con todos los detalles.
+          <p className="text-sm text-silver-mid font-light leading-relaxed mb-10 max-w-sm mx-auto">
+            {c.sub}
           </p>
 
-          <div className="bg-midnight border border-gold/15 p-8 text-left mb-8">
-            <div className="overline text-gold/50 mb-5">Referencia de reserva</div>
+          <div className="bg-carbon border border-silver/10 p-8 text-left mb-8">
+            <div className="ea-label mb-5">{c.summaryLabel}</div>
             {[
-              ['Código', code],
-              ['Aeropuerto', 'EZE — Ezeiza Internacional'],
-              ['Estado', 'Confirmada'],
-              ['Experiencias restantes', '9 de 10'],
+              [c.keys.code, code],
+              [c.keys.airport, 'EZE — Ezeiza Internacional'],
+              [c.keys.status, c.statusValue],
+              [c.keys.remaining, c.remainingValue],
             ].map(([k, v]) => (
-              <div key={k} className="flex justify-between py-2.5 border-b border-ivory/8 text-xs last:border-b-0">
-                <span className="text-ivory/40 font-light">{k}</span>
-                <span className={cn('font-medium', k === 'Estado' ? 'text-green-400' : 'text-ivory')}>
+              <div key={k} className="flex justify-between py-3 border-b border-silver/10 last:border-b-0 text-xs">
+                <span className="text-silver font-light">{k}</span>
+                <span className={k === c.keys.status ? 'text-green-400 font-light' : 'text-warm-white font-light'}>
                   {v}
                 </span>
               </div>
@@ -43,16 +49,16 @@ export default function BookingConfirmedPage({
           </div>
 
           <div className="flex gap-3 justify-center">
-            <Link href="/booking" className="btn-gold">Nueva reserva</Link>
-            <Link href="/" className="btn-ghost">Volver al inicio</Link>
+            <Link href="/booking" className="btn-ea-primary active:opacity-70">
+              {c.ctaNew}
+            </Link>
+            <Link href="/" className="btn-ea-ghost active:opacity-70">
+              {c.ctaHome}
+            </Link>
           </div>
         </div>
       </main>
       <Footer />
     </>
   )
-}
-
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(' ')
 }
