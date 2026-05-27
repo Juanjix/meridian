@@ -35,7 +35,7 @@ export const translations = {
       features: [
         {
           title: 'Executive Reception',
-          desc: 'Personalized OLED sign. Met inside the terminal — not at the curb.',
+          desc: 'A dedicated host personally awaiting your passenger at arrivals — present before the doors open.',
         },
         {
           title: 'Concierge Protocol',
@@ -65,7 +65,7 @@ export const translations = {
       priceNote: 'One-time. No renewals. No expiration.',
       features: [
         '10 executive airport experiences',
-        'Personalized OLED reception sign',
+        'Dedicated host awaiting every arrival',
         'Premium in-cabin hospitality',
         '100% transferable access',
         'Priority 2-hour concierge booking',
@@ -147,7 +147,7 @@ export const translations = {
       availabilityCount: (n: number, total: number) => `${n} of ${total} remaining`,
       features: [
         { title: (n: number) => `${n} executive airport experiences`, sub: 'EZE · AEP · Arrivals & departures · No expiration' },
-        { title: () => 'Personalized OLED reception sign', sub: "Passenger's name displayed at every experience" },
+        { title: () => 'Dedicated arrival host', sub: 'Personally present at arrivals — your passenger is expected, not searched for' },
         { title: () => 'Premium on-board hospitality', sub: 'Champagne, mineral water, curated snacks. Customizable per experience.' },
         { title: () => '100% transferable, no restrictions', sub: 'Executives, partners, clients, family, artists, guests' },
         { title: () => 'Absolute reservation priority', sub: 'Guaranteed confirmation with 2-hour advance notice' },
@@ -185,8 +185,8 @@ export const translations = {
       },
       step2: {
         nameLabel: 'Passenger name',
-        namePlaceholder: 'Full name as it should appear on the OLED sign',
-        nameNote: 'This name will be displayed on the OLED sign at the airport.',
+        namePlaceholder: 'Full name for the host to identify your passenger',
+        nameNote: 'Your host will use this name to personally identify and receive your passenger.',
         countLabel: 'Number of passengers',
         passengerUnit: 'passenger(s)',
         codeLabel: 'Membership code',
@@ -217,7 +217,7 @@ export const translations = {
           dateTime: 'Date & time',
           flight: 'Flight',
           destination: 'Destination',
-          passengerSign: 'Passenger / Sign',
+          passengerSign: 'Passenger',
           passengers: 'Passengers',
           catering: 'Catering',
           remaining: 'Remaining experiences',
@@ -343,7 +343,7 @@ export const translations = {
       features: [
         {
           title: 'Recepción Ejecutiva',
-          desc: 'Cartel OLED personalizado. Recibido dentro de la terminal, no en la vereda.',
+          desc: 'Un anfitrión dedicado esperando personalmente a tu pasajero en llegadas — presente antes de que se abran las puertas.',
         },
         {
           title: 'Protocolo Concierge',
@@ -373,7 +373,7 @@ export const translations = {
       priceNote: 'Pago único. Sin renovaciones. Sin vencimiento.',
       features: [
         '10 experiencias ejecutivas en aeropuerto',
-        'Cartel OLED de recepción personalizado',
+        'Anfitrión dedicado en cada llegada',
         'Hospitalidad premium en cabina',
         'Acceso 100% transferible',
         'Reserva concierge prioritaria en 2 horas',
@@ -455,7 +455,7 @@ export const translations = {
       availabilityCount: (n: number, total: number) => `${n} de ${total} restantes`,
       features: [
         { title: (n: number) => `${n} experiencias ejecutivas en aeropuerto`, sub: 'EZE · AEP · Llegadas y salidas · Sin vencimiento' },
-        { title: () => 'Cartel OLED de recepción personalizado', sub: 'Nombre del pasajero en cada experiencia' },
+        { title: () => 'Anfitrión de llegada dedicado', sub: 'Presencia personal en llegadas — tu pasajero es esperado, no buscado' },
         { title: () => 'Hospitalidad premium a bordo', sub: 'Champagne, agua mineral, snacks curados. Personalizable por experiencia.' },
         { title: () => '100% transferible, sin restricciones', sub: 'Ejecutivos, socios, clientes, familia, artistas, invitados' },
         { title: () => 'Prioridad absoluta de reserva', sub: 'Confirmación garantizada con 2 horas de anticipación' },
@@ -493,8 +493,8 @@ export const translations = {
       },
       step2: {
         nameLabel: 'Nombre del pasajero',
-        namePlaceholder: 'Nombre completo tal como aparecerá en el cartel OLED',
-        nameNote: 'Este nombre se mostrará en el cartel OLED en el aeropuerto.',
+        namePlaceholder: 'Nombre completo para que el anfitrión identifique al pasajero',
+        nameNote: 'El anfitrión usará este nombre para identificar y recibir personalmente al pasajero.',
         countLabel: 'Cantidad de pasajeros',
         passengerUnit: 'pasajero(s)',
         codeLabel: 'Código de membresía',
@@ -525,7 +525,7 @@ export const translations = {
           dateTime: 'Fecha y hora',
           flight: 'Vuelo',
           destination: 'Destino',
-          passengerSign: 'Pasajero / Cartel',
+          passengerSign: 'Pasajero',
           passengers: 'Pasajeros',
           catering: 'Catering',
           remaining: 'Experiencias restantes',
