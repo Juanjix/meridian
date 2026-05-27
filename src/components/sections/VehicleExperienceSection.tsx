@@ -4,50 +4,68 @@ import Image from 'next/image'
 import { useRef } from 'react'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
-import { fadeUp, fadeInBlur, staggerContainer, staggerFast, lineReveal } from '@/lib/animations'
+import {
+  fadeUp,
+  fadeIn,
+  fadeInBlur,
+  staggerContainer,
+  staggerFast,
+  staggerEditorial,
+  lineReveal,
+  maskRevealV,
+  EASE_APPLE,
+  EASE_CINEMA,
+} from '@/lib/animations'
 
 export function VehicleExperienceSection() {
   const { t } = useLanguage()
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-8% 0px' })
+  const inView = useInView(ref, { once: true, margin: '-6% 0px' })
 
   // Parallax on the hero image
   const imgRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: imgRef, offset: ['start end', 'end start'] })
-  const imgY = useTransform(scrollYProgress, [0, 1], ['-7%', '7%'])
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%'])
 
   return (
-    <section ref={ref} className="bg-obsidian overflow-hidden">
+    <section ref={ref} className="bg-carbon overflow-hidden">
 
-      {/* ── Full-bleed exterior with parallax + copy overlay ──────────────── */}
+      {/* ── Full-bleed image with mask reveal ───────────────────────────── */}
       <div
         ref={imgRef}
         className="relative w-full overflow-hidden noise-overlay"
-        style={{ height: 'clamp(440px, 68vh, 680px)' }}
+        style={{ height: 'clamp(480px, 72vh, 720px)' }}
       >
-        {/* Parallax image */}
+        {/* Parallax container */}
         <motion.div
           style={{ y: imgY }}
           className="absolute inset-[-10%] w-[120%] gpu"
         >
-          <div className="img-cinematic absolute inset-0">
+          {/* Mask reveal wrapper */}
+          <motion.div
+            variants={maskRevealV}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            className="absolute inset-0"
+          >
             <Image
               src="/vehicles/van-front.jpg"
               fill
               quality={92}
               sizes="100vw"
               className="object-cover object-center"
-              alt="Toyota HiAce Executive — Executive Arrival"
+              alt="Executive Cabin — Executive Arrival"
+              style={{ filter: 'brightness(0.82) contrast(1.1) saturate(0.82)' }}
             />
-          </div>
+          </motion.div>
 
           {/* Cinematic multi-layer overlay */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               background: [
-                'linear-gradient(90deg, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.35) 50%, rgba(8,8,8,0.12) 100%)',
-                'linear-gradient(0deg, rgba(8,8,8,0.6) 0%, transparent 45%)',
+                'linear-gradient(90deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.45) 45%, rgba(8,8,8,0.18) 100%)',
+                'linear-gradient(0deg, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.20) 40%, transparent 65%)',
               ].join(', '),
             }}
           />
@@ -58,26 +76,60 @@ export function VehicleExperienceSection() {
           variants={staggerContainer}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="relative z-10 h-full flex flex-col justify-end max-w-7xl mx-auto px-6 md:px-12 pb-14"
+          className="relative z-10 h-full flex flex-col justify-end max-w-7xl mx-auto px-6 md:px-12 pb-12 md:pb-16"
         >
-          <motion.div variants={fadeInBlur} className="ea-label text-silver/55 mb-5">
+          <motion.div variants={fadeIn} className="ea-label text-silver/55 mb-4 md:mb-5">
             {t.vehicle.label}
           </motion.div>
-          <motion.h2
+          <motion.div
             variants={fadeUp}
             className="font-light text-warm-white"
-            style={{ fontSize: 'clamp(2.2rem, 5.5vw, 5rem)', letterSpacing: '-0.045em', lineHeight: 0.92 }}
+            style={{ fontSize: 'clamp(2.4rem, 6.5vw, 5.8rem)', letterSpacing: '-0.045em', lineHeight: 0.91 }}
           >
-            {t.vehicle.headline1}
-          </motion.h2>
+            <span className="block">{t.vehicle.headline1}</span>
+            <span className="block" style={{ color: 'rgba(240,236,230,0.65)' }}>
+              {t.vehicle.headline2}
+            </span>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* ── Interior gallery + copy ────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-20">
+      {/* ── Manifesto strip: Silence. Privacy. Presence. ─────────────────── */}
+      <div className="border-y border-silver/8">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <motion.div
+            variants={staggerEditorial}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            className="flex flex-col sm:flex-row divide-y sm:divide-y-0 sm:divide-x divide-silver/8"
+          >
+            {t.vehicle.manifesto.split('\n').map((word, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                className="flex-1 py-8 md:py-10 px-0 sm:px-8 md:px-12 first:pl-0 last:pr-0"
+              >
+                <span
+                  className="font-light text-warm-white block"
+                  style={{
+                    fontSize: 'clamp(1.6rem, 3.2vw, 2.8rem)',
+                    letterSpacing: '-0.03em',
+                    opacity: i === 0 ? 0.35 : i === 1 ? 0.62 : 1,
+                  }}
+                >
+                  {word}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ── Interior gallery + editorial copy ────────────────────────────── */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
 
-          {/* Left: cinematic photo grid */}
+          {/* Left: cinematic photo grid with mask reveals */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -86,50 +138,56 @@ export function VehicleExperienceSection() {
           >
             {/* Main interior — full width */}
             <motion.div
-              variants={fadeInBlur}
-              className="col-span-2 img-cinematic"
+              variants={maskRevealV}
+              className="col-span-2 overflow-hidden"
               style={{ height: 'clamp(200px, 45vw, 300px)' }}
             >
-              <Image
-                src="/vehicles/van-interior-2.jpg"
-                fill
-                quality={90}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-center"
-                alt="Executive cabin — door open"
-              />
+              <div className="relative w-full h-full img-cinematic">
+                <Image
+                  src="/vehicles/van-interior-2.jpg"
+                  fill
+                  quality={90}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-center"
+                  alt="Executive cabin — interior"
+                />
+              </div>
             </motion.div>
 
             {/* Interior detail */}
             <motion.div
-              variants={fadeInBlur}
-              className="img-cinematic"
+              variants={maskRevealV}
+              className="overflow-hidden"
               style={{ height: 'clamp(130px, 28vw, 195px)' }}
             >
-              <Image
-                src="/vehicles/van-interior-1.jpg"
-                fill
-                quality={88}
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="object-cover object-center"
-                alt="Executive leather seats"
-              />
+              <div className="relative w-full h-full img-cinematic">
+                <Image
+                  src="/vehicles/van-interior-1.jpg"
+                  fill
+                  quality={88}
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover object-center"
+                  alt="Executive leather seating"
+                />
+              </div>
             </motion.div>
 
-            {/* Steering detail */}
+            {/* Steering */}
             <motion.div
-              variants={fadeInBlur}
-              className="img-cinematic"
+              variants={maskRevealV}
+              className="overflow-hidden"
               style={{ height: 'clamp(130px, 28vw, 195px)' }}
             >
-              <Image
-                src="/vehicles/van-steering.jpg"
-                fill
-                quality={88}
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="object-cover object-right"
-                alt="Executive controls"
-              />
+              <div className="relative w-full h-full img-cinematic">
+                <Image
+                  src="/vehicles/van-steering.jpg"
+                  fill
+                  quality={88}
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover object-right"
+                  alt="Executive controls"
+                />
+              </div>
             </motion.div>
           </motion.div>
 
@@ -140,13 +198,9 @@ export function VehicleExperienceSection() {
             animate={inView ? 'visible' : 'hidden'}
             className="lg:pt-6"
           >
-            <motion.h2
-              variants={fadeUp}
-              className="font-light text-warm-white leading-[0.92] mb-6"
-              style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', letterSpacing: '-0.04em' }}
-            >
-              {t.vehicle.headline2}
-            </motion.h2>
+            <motion.div variants={fadeIn} className="ea-label text-champagne/50 mb-5">
+              {t.vehicle.eyebrow}
+            </motion.div>
 
             <motion.div
               variants={lineReveal}
@@ -157,7 +211,7 @@ export function VehicleExperienceSection() {
             <motion.p
               variants={fadeUp}
               className="text-silver-mid font-light leading-relaxed mb-12"
-              style={{ fontSize: '0.925rem' }}
+              style={{ fontSize: '0.925rem', lineHeight: 1.8 }}
             >
               {t.vehicle.sub}
             </motion.p>
@@ -179,8 +233,8 @@ export function VehicleExperienceSection() {
             </motion.ul>
 
             <motion.div
-              variants={fadeInBlur}
-              className="mt-10 text-2xs tracking-[0.18em] uppercase text-silver/45"
+              variants={fadeIn}
+              className="mt-10 text-2xs tracking-[0.18em] uppercase text-silver/40 font-light"
             >
               {t.vehicle.note}
             </motion.div>

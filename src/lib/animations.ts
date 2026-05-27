@@ -28,7 +28,7 @@ export const fadeUpSlow = {
   },
 }
 
-// Fade-in only — for lines, labels, subtle elements (no blur to avoid over-doing it)
+// Fade-in only — for lines, labels, subtle elements
 export const fadeIn = {
   hidden: { opacity: 0 },
   visible: {
@@ -68,6 +68,35 @@ export const lineReveal = {
   },
 }
 
+// ─── Mask reveals — cinematic image/text clipping ───────────────────────────
+
+// Horizontal mask — reveals left to right (editorial text lines, labels)
+export const maskRevealH = {
+  hidden: { clipPath: 'inset(0 100% 0 0)' },
+  visible: {
+    clipPath: 'inset(0 0% 0 0)',
+    transition: { duration: 1.2, ease: EASE_CINEMA },
+  },
+}
+
+// Vertical mask — reveals bottom to top (cinematic image entrance)
+export const maskRevealV = {
+  hidden: { clipPath: 'inset(100% 0 0 0)' },
+  visible: {
+    clipPath: 'inset(0% 0 0 0)',
+    transition: { duration: 1.5, ease: EASE_CINEMA },
+  },
+}
+
+// Vertical mask — reveals top to bottom (for overlays, dividers)
+export const maskRevealDown = {
+  hidden: { clipPath: 'inset(0 0 100% 0)' },
+  visible: {
+    clipPath: 'inset(0 0 0% 0)',
+    transition: { duration: 1.4, ease: EASE_CINEMA },
+  },
+}
+
 // ─── Container stagger ──────────────────────────────────────────────────────
 
 // Standard — 100ms between children, small initial delay
@@ -91,5 +120,13 @@ export const staggerSlow = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.14, delayChildren: 0.1 },
+  },
+}
+
+// Editorial — generous stagger for feature pillars / columns
+export const staggerEditorial = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.09, delayChildren: 0.2 },
   },
 }
