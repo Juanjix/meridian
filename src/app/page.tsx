@@ -6,6 +6,7 @@ import { FoundersMembershipSection } from '@/components/sections/FoundersMembers
 import { VehicleExperienceSection } from '@/components/sections/VehicleExperienceSection'
 import { CorporateHospitalitySection } from '@/components/sections/CorporateHospitalitySection'
 import { FinalCTASection } from '@/components/sections/FinalCTASection'
+import { ExecutiveExperiencesSection } from '@/components/sections/ExecutiveExperiencesSection'
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
         <HeroSection />
         <TheExperienceSection />
         <FoundersMembershipSection />
+        <ExecutiveExperiencesSection />
         <VehicleExperienceSection />
         <CorporateHospitalitySection />
         <FinalCTASection />
