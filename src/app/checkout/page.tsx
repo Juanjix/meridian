@@ -15,7 +15,7 @@ import type { PaymentMethod } from '@/types'
 const WIRE_FIELDS = [
   ['Bank', 'Banco Galicia'],
   ['CBU', '0070123400001234567890'],
-  ['Alias', 'MILLENNIUM.TRAVEL'],
+  ['Alias', 'BAVITA.TRANSFER'],
 ] as const
 
 export default function CheckoutPage() {
@@ -176,7 +176,7 @@ export default function CheckoutPage() {
                       <div className="flex flex-col gap-3">
                         {[
                           ...WIRE_FIELDS,
-                          ['Holder', 'Millennium Travel SRL'],
+                          ['Holder', 'BA Vita Luxury Transfer SRL'],
                         ].map(([k, v]) => (
                           <div key={k} className="flex justify-between text-xs">
                             <span className="text-silver font-light">{k}</span>

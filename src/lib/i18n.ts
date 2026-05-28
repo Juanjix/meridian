@@ -130,7 +130,7 @@ export const translations = {
         whatsapp: 'WhatsApp Concierge',
       },
       copyright: (year: number) =>
-        `© ${year} Millennium Travel. All rights reserved.`,
+        `© ${year} BA Vita Luxury Transfer. All rights reserved.`,
       sub: 'Not a transfer. An arrival.',
     },
 
@@ -139,7 +139,7 @@ export const translations = {
       label: 'Founders Membership',
       headline1: 'Executive Airport',
       headline2: 'Experience',
-      cardBadge: 'Millennium Travel',
+      cardBadge: 'BA Vita Luxury Transfer',
       cardTitle: 'Founder Member',
       cardSub: 'Executive Airport Experience · Founders Edition',
       priceNote: (n: number) => `one-time · ${n} experiences included`,
@@ -438,7 +438,7 @@ export const translations = {
         whatsapp: 'WhatsApp Concierge',
       },
       copyright: (year: number) =>
-        `© ${year} Millennium Travel. Todos los derechos reservados.`,
+        `© ${year} BA Vita Luxury Transfer. Todos los derechos reservados.`,
       sub: 'No es un traslado. Es una llegada.',
     },
 
@@ -447,7 +447,7 @@ export const translations = {
       label: 'Membresía Founders',
       headline1: 'Experiencia Ejecutiva',
       headline2: 'en Aeropuerto',
-      cardBadge: 'Millennium Travel',
+      cardBadge: 'BA Vita Luxury Transfer',
       cardTitle: 'Miembro Fundador',
       cardSub: 'Experiencia Ejecutiva en Aeropuerto · Edición Founders',
       priceNote: (n: number) => `pago único · ${n} experiencias incluidas`,

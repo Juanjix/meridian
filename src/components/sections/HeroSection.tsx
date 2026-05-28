@@ -34,7 +34,7 @@ export function HeroSection() {
           quality={95}
           sizes="100vw"
           className="object-cover object-center"
-          alt="Millennium Travel — Executive Cabin"
+          alt="BA Vita Luxury Transfer — Executive Cabin"
         />
 
         {/* Cinematic video overlay — covers image when available */}

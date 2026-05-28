@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
-export const alt = 'Millennium Travel — Tu llegada, comienza aquí. Hospitalidad ejecutiva en Buenos Aires.'
+export const alt = 'BA Vita Luxury Transfer — Tu llegada, comienza aquí. Hospitalidad ejecutiva en Buenos Aires.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -104,7 +104,7 @@ export default function Image() {
                 fontWeight: 300,
               }}
             >
-              Millennium Travel
+              BA Vita Luxury Transfer
             </div>
           </div>
 
@@ -163,7 +163,7 @@ export default function Image() {
                 fontWeight: 300,
               }}
             >
-              millenniumtravel.com.ar
+              bavitaluxury.com.ar
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div

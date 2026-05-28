@@ -9,7 +9,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Millennium Travel — Hospitalidad Ejecutiva en Buenos Aires',
+  title: 'BA Vita Luxury Transfer — Hospitalidad Ejecutiva en Buenos Aires',
   description: 'Hospitalidad ejecutiva terrestre para ejecutivos, corporaciones y experiencias VIP en Buenos Aires. Recepción personalizada, hospitalidad premium y protocolo concierge.',
   keywords: [
     'hospitalidad ejecutiva Buenos Aires',
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     'membresía ejecutiva Argentina',
     'corporate hospitality Buenos Aires',
   ],
-  authors: [{ name: 'Millennium Travel' }],
-  creator: 'Millennium Travel',
-  publisher: 'Millennium Travel',
+  authors: [{ name: 'BA Vita Luxury Transfer' }],
+  creator: 'BA Vita Luxury Transfer',
+  publisher: 'BA Vita Luxury Transfer',
   robots: {
     index: true,
     follow: true,
@@ -33,19 +33,19 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Millennium Travel — Tu llegada, comienza aquí.',
+    title: 'BA Vita Luxury Transfer — Tu llegada, comienza aquí.',
     description: 'Hospitalidad ejecutiva terrestre para ejecutivos, corporaciones y experiencias VIP en Buenos Aires. Recepción OLED personalizada, hospitalidad premium, protocolo concierge.',
-    siteName: 'Millennium Travel',
+    siteName: 'BA Vita Luxury Transfer',
     locale: 'es_AR',
     type: 'website',
     url: siteUrl,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Millennium Travel — Tu llegada, comienza aquí.',
+    title: 'BA Vita Luxury Transfer — Tu llegada, comienza aquí.',
     description: 'Hospitalidad ejecutiva terrestre para ejecutivos y corporaciones en Buenos Aires. Membresía Founders disponible.',
-    creator: '@millenniumtravel',
-    site: '@millenniumtravel',
+    creator: '@bavitaluxury',
+    site: '@bavitaluxury',
   },
 }
 

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 56" fill="none" role="img" aria-label="BA Vita Luxury Transfer">
+
+  <!-- Diamond mark -->
+  <g transform="translate(0, 8)">
+    <!-- Outer diamond -->
+    <path d="M20 0 L40 20 L20 40 L0 20 Z" stroke="#B8962E" stroke-width="0.9" fill="none"/>
+    <!-- Inner diamond -->
+    <path d="M20 7 L33 20 L20 33 L7 20 Z" stroke="#B8962E" stroke-width="0.5" fill="none" opacity="0.40"/>
+    <!-- Center dot -->
+    <circle cx="20" cy="20" r="1.5" fill="#B8962E" opacity="0.65"/>
+  </g>
+
+  <!-- Vertical divider -->
+  <line x1="55" y1="10" x2="55" y2="46" stroke="#1A1A1A" stroke-width="0.5" opacity="0.18"/>
+
+  <!-- Wordmark -->
+  <g transform="translate(67, 0)">
+    <!-- BA VITA -->
+    <text
+      x="0" y="30"
+      font-family="'Satoshi', 'Inter', 'Helvetica Neue', sans-serif"
+      font-weight="300"
+      font-size="17"
+      letter-spacing="3.5"
+      fill="#0F0F0F"
+    >BA VITA</text>
+
+    <!-- LUXURY TRANSFER -->
+    <text
+      x="0.5" y="44"
+      font-family="'Satoshi', 'Inter', 'Helvetica Neue', sans-serif"
+      font-weight="300"
+      font-size="7.5"
+      letter-spacing="4.5"
+      fill="#B8962E"
+      opacity="0.80"
+    >LUXURY TRANSFER</text>
+  </g>
+
+</svg>
