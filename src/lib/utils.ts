@@ -41,5 +41,5 @@ export const CATERING_LABELS: Record<string, string> = {
 
 export const FOUNDERS_TOTAL = 30
 export const FOUNDERS_AVAILABLE = 23
-export const MEMBERSHIP_PRICE_USD = 1500
+export const MEMBERSHIP_PRICE_USD = 2200
 export const EXPERIENCES_PER_MEMBERSHIP = 10
