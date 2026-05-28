@@ -121,7 +121,7 @@ export default function MembershipPage() {
                   {m.ctaAcquire}
                 </Link>
                 <a
-                  href="https://wa.me/5491100000000"
+                  href="https://wa.me/5491156098220"
                   className="btn-ea-ghost w-full justify-center text-[11px] active:opacity-70"
                 >
                   {m.ctaWhatsapp}

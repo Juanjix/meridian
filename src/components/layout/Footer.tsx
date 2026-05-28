@@ -55,7 +55,7 @@ export function Footer() {
                   {t.footer.contact.email}
                 </a>
                 <a
-                  href="https://wa.me/5491100000000"
+                  href="https://wa.me/5491156098220"
                   className="text-xs font-light text-silver hover:text-warm-white transition-colors duration-200"
                 >
                   {t.footer.contact.whatsapp}
