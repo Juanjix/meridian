@@ -123,7 +123,7 @@ export function FoundersMembershipSection() {
             >
               {t.founders.price}
             </div>
-            <div className="text-xs text-silver-mid font-light leading-relaxed">
+            <div className="text-xs text-silver-light font-light leading-relaxed">
               {t.founders.priceNote}
             </div>
           </div>

@@ -24,7 +24,7 @@ export default function MembershipPage() {
 
           {/* Header */}
           <div className="max-w-xl mb-16">
-            <div className="ea-label text-silver/60 mb-5">{m.eyebrow}</div>
+            <div className="ea-label mb-5">{m.eyebrow}</div>
             <h1
               className="font-light text-warm-white leading-[0.93] mb-6"
               style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', letterSpacing: '-0.04em' }}
@@ -52,7 +52,7 @@ export default function MembershipPage() {
                 <div className="text-lg tracking-[0.1em] uppercase text-warm-white font-light mb-1">
                   {m.cardTitle}
                 </div>
-                <div className="text-2xs tracking-widest uppercase text-silver/40 mb-6">
+                <div className="text-2xs tracking-widest uppercase text-silver-mid mb-6">
                   {m.cardSub}
                 </div>
                 <div className="flex items-baseline gap-3">
@@ -62,7 +62,7 @@ export default function MembershipPage() {
                   >
                     USD {MEMBERSHIP_PRICE_USD.toLocaleString()}
                   </span>
-                  <span className="text-xs text-silver font-light">
+                  <span className="text-xs text-silver-light font-light">
                     {m.priceNote(EXPERIENCES_PER_MEMBERSHIP)}
                   </span>
                 </div>
@@ -80,7 +80,7 @@ export default function MembershipPage() {
                       />
                       <div>
                         <div className="text-sm text-warm-white font-light">{f.title(EXPERIENCES_PER_MEMBERSHIP)}</div>
-                        <div className="text-2xs text-silver/50 mt-0.5 font-light">{f.sub}</div>
+                        <div className="text-2xs text-silver-mid mt-0.5 font-light">{f.sub}</div>
                       </div>
                     </div>
                   ))}
@@ -91,7 +91,7 @@ export default function MembershipPage() {
               <div className="px-6 md:px-8 pb-6 md:pb-8">
                 <div className="border-t border-silver/10 pt-6">
                   <div className="flex justify-between items-center mb-3">
-                    <span className="text-2xs text-silver/50 tracking-wider uppercase">{m.availability}</span>
+                    <span className="text-2xs text-silver-mid tracking-wider uppercase">{m.availability}</span>
                     <span className="text-2xs text-silver-light">
                       {m.availabilityCount(FOUNDERS_AVAILABLE, FOUNDERS_TOTAL)}
                     </span>
@@ -133,7 +133,7 @@ export default function MembershipPage() {
                   {m.guarantees.map((item) => (
                     <div key={item} className="flex items-start gap-3">
                       <span className="text-champagne/50 text-xs mt-0.5 flex-shrink-0">—</span>
-                      <span className="text-2xs text-silver font-light leading-relaxed">{item}</span>
+                      <span className="text-2xs text-silver-light font-light leading-relaxed">{item}</span>
                     </div>
                   ))}
                 </div>

@@ -76,7 +76,7 @@ export default function BookingPage() {
 
           {/* Header */}
           <div className="mb-12">
-            <div className="ea-label text-silver/60 mb-4">{b.eyebrow}</div>
+            <div className="ea-label mb-4">{b.eyebrow}</div>
             <h1
               className="font-light text-warm-white"
               style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', letterSpacing: '-0.04em' }}
@@ -148,7 +148,7 @@ export default function BookingPage() {
                         >
                           {code}
                         </div>
-                        <div className="text-2xs text-silver font-light">{name}</div>
+                        <div className="text-2xs text-silver-light font-light">{name}</div>
                       </button>
                     ))}
                   </div>
@@ -176,7 +176,7 @@ export default function BookingPage() {
                     {b.step1.flightLabel} <span className="normal-case">{b.step1.optional}</span>
                   </label>
                   <input {...form1.register('flightNumber')} className="input-ea" placeholder={b.step1.flightPlaceholder} />
-                  <p className="text-2xs text-silver/50 mt-1.5">{b.step1.flightNote}</p>
+                  <p className="text-2xs text-silver-mid mt-1.5">{b.step1.flightNote}</p>
                 </div>
 
                 <div>
@@ -205,7 +205,7 @@ export default function BookingPage() {
                     className="input-ea"
                     placeholder={b.step2.namePlaceholder}
                   />
-                  <p className="text-2xs text-silver/50 mt-1.5">{b.step2.nameNote}</p>
+                  <p className="text-2xs text-silver-mid mt-1.5">{b.step2.nameNote}</p>
                   {form2.formState.errors.passengerName && (
                     <p className="text-2xs text-red-400 mt-1.5">{form2.formState.errors.passengerName.message}</p>
                   )}
@@ -234,7 +234,7 @@ export default function BookingPage() {
                     >
                       <Plus size={14} />
                     </button>
-                    <span className="text-xs text-silver font-light">{b.step2.passengerUnit}</span>
+                    <span className="text-xs text-silver-light font-light">{b.step2.passengerUnit}</span>
                   </div>
                 </div>
 
@@ -243,7 +243,7 @@ export default function BookingPage() {
                     {b.step2.codeLabel} <span className="normal-case">{b.step2.optional}</span>
                   </label>
                   <input {...form2.register('membershipCode')} className="input-ea" placeholder={b.step2.codePlaceholder} />
-                  <p className="text-2xs text-silver/50 mt-1.5">{b.step2.codeNote}</p>
+                  <p className="text-2xs text-silver-mid mt-1.5">{b.step2.codeNote}</p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -327,7 +327,7 @@ export default function BookingPage() {
                       [b.step4.keys.remaining, '9 of 10'],
                     ].map(([k, v]) => (
                       <div key={k} className="flex justify-between items-start px-5 py-4 text-xs">
-                        <span className="text-silver font-light">{k}</span>
+                        <span className="text-silver-light font-light">{k}</span>
                         <span className="text-warm-white font-light text-right max-w-[60%]">{v}</span>
                       </div>
                     ))}

@@ -68,7 +68,7 @@ export default function CheckoutPage() {
         <div className="max-w-6xl mx-auto px-6 md:px-12 py-16">
 
           <div className="max-w-xl mb-12">
-            <div className="ea-label text-silver/60 mb-4">{c.eyebrow}</div>
+            <div className="ea-label mb-4">{c.eyebrow}</div>
             <h1
               className="font-light text-warm-white"
               style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', letterSpacing: '-0.04em' }}
@@ -134,7 +134,7 @@ export default function CheckoutPage() {
                         )}>
                           {m.label}
                         </div>
-                        <div className="text-2xs text-silver font-light">{m.sub}</div>
+                        <div className="text-2xs text-silver-light font-light">{m.sub}</div>
                       </button>
                     ))}
                   </div>
@@ -179,12 +179,12 @@ export default function CheckoutPage() {
                           ['Holder', 'BA Vita Luxury Transfer SRL'],
                         ].map(([k, v]) => (
                           <div key={k} className="flex justify-between text-xs">
-                            <span className="text-silver font-light">{k}</span>
+                            <span className="text-silver-light font-light">{k}</span>
                             <span className="text-warm-white font-light">{v}</span>
                           </div>
                         ))}
                       </div>
-                      <p className="text-2xs text-silver mt-5 leading-relaxed">
+                      <p className="text-2xs text-silver-light mt-5 leading-relaxed">
                         {c.wireNote('hola@millenniumtravel.com.ar').split('hola@millenniumtravel.com.ar')[0]}
                         <a href="mailto:hola@millenniumtravel.com.ar" className="text-champagne/80 hover:text-champagne transition-colors">
                           hola@millenniumtravel.com.ar
@@ -204,7 +204,7 @@ export default function CheckoutPage() {
                   {isLoading ? c.processing : c.submit}
                 </button>
 
-                <div className="flex items-center justify-center gap-2 text-2xs text-silver/50">
+                <div className="flex items-center justify-center gap-2 text-2xs text-silver-mid">
                   <Lock size={10} />
                   {c.security}
                 </div>
@@ -217,7 +217,7 @@ export default function CheckoutPage() {
                   <div className="flex flex-col divide-y divide-silver/10">
                     {summaryRows.map(([k, v]) => (
                       <div key={k} className="flex justify-between items-center py-4 text-xs">
-                        <span className="text-silver font-light">{k}</span>
+                        <span className="text-silver-light font-light">{k}</span>
                         <span className="text-warm-white font-light">{v}</span>
                       </div>
                     ))}
@@ -232,7 +232,7 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  <div className="mt-7 pt-6 border-t border-silver/10 text-2xs text-silver font-light leading-relaxed">
+                  <div className="mt-7 pt-6 border-t border-silver/10 text-2xs text-silver-light font-light leading-relaxed">
                     <strong className="text-warm-white">23</strong> {c.remaining(23).replace('23 ', '')}
                     {' '}{c.noRestock}
                   </div>

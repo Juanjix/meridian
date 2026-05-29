@@ -136,7 +136,7 @@ export function TheExperienceSection() {
             </h3>
 
             {/* Desc */}
-            <p className="text-silver-mid font-light text-xs md:text-sm leading-relaxed" style={{ lineHeight: 1.7 }}>
+            <p className="text-silver-light font-light text-xs md:text-sm leading-relaxed" style={{ lineHeight: 1.7 }}>
               {feature.desc}
             </p>
           </motion.div>

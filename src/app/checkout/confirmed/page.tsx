@@ -39,7 +39,7 @@ function CheckoutConfirmedContent() {
           [c.keys.transferable, c.transferableValue],
         ].map(([k, v]) => (
           <div key={k} className="flex justify-between py-3 border-b border-silver/10 last:border-b-0 text-xs">
-            <span className="text-silver font-light">{k}</span>
+            <span className="text-silver-light font-light">{k}</span>
             <span className="text-warm-white font-light">{v}</span>
           </div>
         ))}

@@ -18,7 +18,7 @@ function FeatureRow({ text }: { text: string }) {
       >
         ——
       </span>
-      <span className="text-xs font-light leading-relaxed" style={{ color: '#9A9A9A' }}>
+      <span className="text-xs font-light leading-relaxed" style={{ color: '#C0C0C0' }}>
         {text}
       </span>
     </motion.div>
@@ -48,7 +48,7 @@ export function ExecutiveExperiencesSection() {
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
             variants={fadeIn}
-            className="ea-label text-silver/60 mb-6"
+            className="ea-label mb-6"
           >
             {ex.label}
           </motion.div>
@@ -79,7 +79,7 @@ export function ExecutiveExperiencesSection() {
             variants={fadeUp}
             transition={{ delay: 0.35 }}
             className="text-sm font-light leading-relaxed max-w-lg"
-            style={{ color: '#8A8A8A' }}
+            style={{ color: '#B8B8B8' }}
           >
             {ex.sub}
           </motion.p>
@@ -143,7 +143,7 @@ export function ExecutiveExperiencesSection() {
                   </div>
                   <p
                     className="text-[11px] font-light tracking-[0.10em] mt-2.5"
-                    style={{ color: '#606060' }}
+                    style={{ color: '#A8A8A8' }}
                   >
                     {ex.transfer.subtext}
                   </p>
@@ -160,7 +160,7 @@ export function ExecutiveExperiencesSection() {
                   >
                     {ex.transfer.title}
                   </h3>
-                  <p className="text-xs font-light leading-relaxed" style={{ color: '#6E6E6E' }}>
+                  <p className="text-xs font-light leading-relaxed" style={{ color: '#A8A8A8' }}>
                     {ex.transfer.desc}
                   </p>
                 </div>
@@ -287,7 +287,7 @@ export function ExecutiveExperiencesSection() {
                   >
                     {ex.membership.title}
                   </h3>
-                  <p className="text-xs font-light leading-relaxed" style={{ color: '#6E6E6E' }}>
+                  <p className="text-xs font-light leading-relaxed" style={{ color: '#A8A8A8' }}>
                     {ex.membership.desc}
                   </p>
                 </div>
