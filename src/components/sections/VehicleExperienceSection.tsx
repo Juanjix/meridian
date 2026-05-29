@@ -210,7 +210,7 @@ export function VehicleExperienceSection() {
 
             <motion.p
               variants={fadeUp}
-              className="text-silver-mid font-light leading-relaxed mb-12"
+              className="text-silver-light font-light leading-relaxed mb-12"
               style={{ fontSize: '0.925rem', lineHeight: 1.8 }}
             >
               {t.vehicle.sub}

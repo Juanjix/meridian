@@ -24,7 +24,7 @@ function BookingConfirmedContent() {
       >
         {c.headline}
       </h1>
-      <p className="text-sm text-silver-mid font-light leading-relaxed mb-10 max-w-sm mx-auto">
+      <p className="text-sm text-silver-light font-light leading-relaxed mb-10 max-w-sm mx-auto">
         {c.sub}
       </p>
 

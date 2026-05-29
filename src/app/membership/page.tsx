@@ -33,7 +33,7 @@ export default function MembershipPage() {
               <span className="text-silver-light">{m.headline2}</span>
             </h1>
             <div className="w-10 h-px bg-champagne/40" />
-            <p className="mt-6 text-sm text-silver-mid font-light leading-relaxed">
+            <p className="mt-6 text-sm text-silver-light font-light leading-relaxed">
               {t.founders.sub}
             </p>
           </div>
@@ -52,7 +52,7 @@ export default function MembershipPage() {
                 <div className="text-lg tracking-[0.1em] uppercase text-warm-white font-light mb-1">
                   {m.cardTitle}
                 </div>
-                <div className="text-2xs tracking-widest uppercase text-silver-mid mb-6">
+                <div className="text-2xs tracking-widest uppercase text-silver-light mb-6">
                   {m.cardSub}
                 </div>
                 <div className="flex items-baseline gap-3">
@@ -80,7 +80,7 @@ export default function MembershipPage() {
                       />
                       <div>
                         <div className="text-sm text-warm-white font-light">{f.title(EXPERIENCES_PER_MEMBERSHIP)}</div>
-                        <div className="text-2xs text-silver-mid mt-0.5 font-light">{f.sub}</div>
+                        <div className="text-2xs text-silver-light mt-0.5 font-light">{f.sub}</div>
                       </div>
                     </div>
                   ))}
@@ -91,7 +91,7 @@ export default function MembershipPage() {
               <div className="px-6 md:px-8 pb-6 md:pb-8">
                 <div className="border-t border-silver/10 pt-6">
                   <div className="flex justify-between items-center mb-3">
-                    <span className="text-2xs text-silver-mid tracking-wider uppercase">{m.availability}</span>
+                    <span className="text-2xs text-silver-light tracking-wider uppercase">{m.availability}</span>
                     <span className="text-2xs text-silver-light">
                       {m.availabilityCount(FOUNDERS_AVAILABLE, FOUNDERS_TOTAL)}
                     </span>
@@ -114,7 +114,7 @@ export default function MembershipPage() {
                 <div className="text-sm font-light text-warm-white mb-1">
                   {m.sidebarTitle}
                 </div>
-                <div className="text-xs text-silver-mid font-light leading-relaxed mb-7">
+                <div className="text-xs text-silver-light font-light leading-relaxed mb-7">
                   {m.sidebarDesc}
                 </div>
                 <Link href="/checkout" className="btn-ea-primary w-full justify-center mb-3 active:opacity-70">

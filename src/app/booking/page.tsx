@@ -176,7 +176,7 @@ export default function BookingPage() {
                     {b.step1.flightLabel} <span className="normal-case">{b.step1.optional}</span>
                   </label>
                   <input {...form1.register('flightNumber')} className="input-ea" placeholder={b.step1.flightPlaceholder} />
-                  <p className="text-2xs text-silver-mid mt-1.5">{b.step1.flightNote}</p>
+                  <p className="text-2xs text-silver-light mt-1.5">{b.step1.flightNote}</p>
                 </div>
 
                 <div>
@@ -205,7 +205,7 @@ export default function BookingPage() {
                     className="input-ea"
                     placeholder={b.step2.namePlaceholder}
                   />
-                  <p className="text-2xs text-silver-mid mt-1.5">{b.step2.nameNote}</p>
+                  <p className="text-2xs text-silver-light mt-1.5">{b.step2.nameNote}</p>
                   {form2.formState.errors.passengerName && (
                     <p className="text-2xs text-red-400 mt-1.5">{form2.formState.errors.passengerName.message}</p>
                   )}
@@ -243,7 +243,7 @@ export default function BookingPage() {
                     {b.step2.codeLabel} <span className="normal-case">{b.step2.optional}</span>
                   </label>
                   <input {...form2.register('membershipCode')} className="input-ea" placeholder={b.step2.codePlaceholder} />
-                  <p className="text-2xs text-silver-mid mt-1.5">{b.step2.codeNote}</p>
+                  <p className="text-2xs text-silver-light mt-1.5">{b.step2.codeNote}</p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">

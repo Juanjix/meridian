@@ -94,7 +94,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[11px] tracking-[0.16em] uppercase font-light text-silver-mid hover:text-warm-white transition-colors duration-300"
+                className="text-[11px] tracking-[0.16em] uppercase font-light text-silver-light hover:text-warm-white transition-colors duration-300"
               >
                 {link.label}
               </Link>
@@ -204,7 +204,7 @@ export function Navbar() {
                       onClick={closeMenu}
                       className="group flex items-center gap-5 py-6 border-b border-silver/10 active:opacity-50 transition-opacity"
                     >
-                      <span className="text-[9px] tracking-[0.22em] text-silver/35 font-light w-5 shrink-0 pt-0.5">
+                      <span className="text-[9px] tracking-[0.22em] text-silver-mid font-light w-5 shrink-0 pt-0.5">
                         {link.num}
                       </span>
                       <span
@@ -249,27 +249,27 @@ export function Navbar() {
                       onClick={() => setLang('en')}
                       className={cn(
                         'text-[10px] tracking-[0.18em] uppercase font-light px-2.5 py-2 transition-colors',
-                        lang === 'en' ? 'text-warm-white' : 'text-silver/60'
+                        lang === 'en' ? 'text-warm-white' : 'text-silver-light/70'
                       )}
                     >
                       EN
                     </button>
-                    <span className="text-silver/25 text-[9px]">|</span>
+                    <span className="text-silver/30 text-[9px]">|</span>
                     <button
                       onClick={() => setLang('es')}
                       className={cn(
                         'text-[10px] tracking-[0.18em] uppercase font-light px-2.5 py-2 transition-colors',
-                        lang === 'es' ? 'text-warm-white' : 'text-silver/60'
+                        lang === 'es' ? 'text-warm-white' : 'text-silver-light/70'
                       )}
                     >
                       ES
                     </button>
                   </div>
                   <div className="flex flex-col items-end gap-0.5">
-                    <span className="text-[9px] tracking-[0.18em] uppercase text-silver/35 font-light">
+                    <span className="text-[9px] tracking-[0.18em] uppercase text-silver-mid font-light">
                       Buenos Aires
                     </span>
-                    <span className="text-[9px] tracking-[0.12em] uppercase text-silver/25 font-light">
+                    <span className="text-[9px] tracking-[0.12em] uppercase text-silver-mid/60 font-light">
                       Executive Ground
                     </span>
                   </div>

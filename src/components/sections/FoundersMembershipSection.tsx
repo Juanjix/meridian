@@ -72,7 +72,7 @@ export function FoundersMembershipSection() {
 
             <motion.p
               variants={fadeInBlur}
-              className="text-silver-mid font-light text-base md:text-lg leading-relaxed mt-8 max-w-lg"
+              className="text-silver-light font-light text-base md:text-lg leading-relaxed mt-8 max-w-lg"
             >
               {t.founders.sub}
             </motion.p>

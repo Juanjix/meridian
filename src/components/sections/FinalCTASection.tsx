@@ -71,7 +71,7 @@ export function FinalCTASection() {
 
           <motion.p
             variants={fadeInBlur}
-            className="text-silver-mid font-light text-sm tracking-[0.06em] mb-12 md:mb-16 text-balance"
+            className="text-silver-light font-light text-sm tracking-[0.06em] mb-12 md:mb-16 text-balance"
           >
             {t.finalCta.sub}
           </motion.p>

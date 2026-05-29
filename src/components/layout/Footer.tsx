@@ -20,7 +20,7 @@ export function Footer() {
             <div className="text-2xs tracking-[0.18em] uppercase text-silver-light mb-1">
               {t.footer.tagline}
             </div>
-            <div className="text-2xs text-silver-mid">
+            <div className="text-2xs text-silver-light">
               {t.footer.location}
             </div>
           </div>
@@ -67,10 +67,10 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 md:mt-16 pt-7 md:pt-8 border-t border-silver/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-          <div className="text-2xs font-light text-silver-mid">
+          <div className="text-2xs font-light text-silver-light">
             {t.footer.copyright(year)}
           </div>
-          <div className="text-2xs font-light text-silver-mid tracking-[0.12em] uppercase">
+          <div className="text-2xs font-light text-silver-light tracking-[0.12em] uppercase">
             {t.footer.sub}
           </div>
         </div>

@@ -81,7 +81,7 @@ export function CorporateHospitalitySection() {
             </div>
 
             <div>
-              <motion.p variants={fadeInBlur} className="text-silver-mid font-light text-sm md:text-base leading-relaxed mb-8 md:mb-10">
+              <motion.p variants={fadeInBlur} className="text-silver-light font-light text-sm md:text-base leading-relaxed mb-8 md:mb-10">
                 {t.corporate.sub}
               </motion.p>
               <motion.div variants={fadeUp}>
@@ -130,7 +130,7 @@ export function CorporateHospitalitySection() {
                   >
                     {client}
                   </span>
-                  <span className="text-silver/18 group-hover:text-champagne/35 transition-colors duration-400 text-xs select-none">
+                  <span className="text-silver/40 group-hover:text-champagne/55 transition-colors duration-400 text-xs select-none">
                     ↗
                   </span>
                 </motion.li>
@@ -153,7 +153,7 @@ export function CorporateHospitalitySection() {
                   className="bg-graphite px-6 py-6 group hover:bg-carbon/50 transition-colors duration-400"
                 >
                   <span
-                    className="text-silver-light/60 font-light group-hover:text-silver-light transition-colors duration-400"
+                    className="text-silver-light font-light group-hover:text-warm-white transition-colors duration-400"
                     style={{ fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)', letterSpacing: '0.04em' }}
                   >
                     {h}
@@ -163,7 +163,7 @@ export function CorporateHospitalitySection() {
             </div>
 
             <div className="mt-8 pt-8 border-t border-silver/10">
-              <p className="text-2xs font-light leading-relaxed tracking-wide" style={{ color: '#8A8A8A' }}>
+              <p className="text-2xs font-light leading-relaxed tracking-wide" style={{ color: '#B8B8B8' }}>
                 {/* A contextual note about the partner network */}
                 Direct coordination with hotel reception and concierge from point of arrival.
               </p>

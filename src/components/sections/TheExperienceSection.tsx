@@ -91,7 +91,7 @@ export function TheExperienceSection() {
 
             <motion.p
               variants={fadeInBlur}
-              className="text-silver-mid font-light text-base md:text-lg leading-relaxed"
+              className="text-silver-light font-light text-base md:text-lg leading-relaxed"
             >
               {t.experience.sub}
             </motion.p>
