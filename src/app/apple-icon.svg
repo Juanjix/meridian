@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none">
+
+  <!-- Background: full obsidian (Apple clips to rounded square automatically) -->
+  <rect width="180" height="180" fill="#0A0A0A"/>
+
+  <!-- Atmospheric radial glow — very subtle champagne -->
+  <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+    <stop offset="0%" stop-color="#D4AF5F" stop-opacity="0.07"/>
+    <stop offset="100%" stop-color="#D4AF5F" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="180" height="180" fill="url(#glow)"/>
+
+  <!-- Van body — scaled up for 180px canvas -->
+  <path
+    d="M 22 124
+       L 22 106
+       L 32 106
+       L 52 60
+       L 138 60
+       L 155 106
+       L 158 124
+       Z"
+    fill="#D4AF5F"
+    opacity="0.92"
+  />
+
+  <!-- Windshield glass -->
+  <path
+    d="M 32 106 L 52 60 L 82 60 L 72 106 Z"
+    fill="#0A0A0A"
+    opacity="0.52"
+  />
+
+  <!-- Side cabin window -->
+  <rect x="84" y="62" width="44" height="38" rx="3" fill="#0A0A0A" opacity="0.44"/>
+
+  <!-- Rear quarter window -->
+  <rect x="132" y="62" width="18" height="38" rx="3" fill="#0A0A0A" opacity="0.38"/>
+
+  <!-- Front headlight -->
+  <rect x="22" y="103" width="10" height="12" rx="2.5" fill="#F5F0E8" opacity="0.65"/>
+
+  <!-- Front wheel -->
+  <circle cx="56" cy="134" r="22" fill="#0A0A0A"/>
+  <circle cx="56" cy="134" r="14" fill="#D4AF5F" opacity="0.70"/>
+  <circle cx="56" cy="134" r="5.5" fill="#0A0A0A"/>
+
+  <!-- Rear wheel -->
+  <circle cx="136" cy="134" r="22" fill="#0A0A0A"/>
+  <circle cx="136" cy="134" r="14" fill="#D4AF5F" opacity="0.70"/>
+  <circle cx="136" cy="134" r="5.5" fill="#0A0A0A"/>
+
+  <!-- Subtle door line -->
+  <line x1="78" y1="106" x2="78" y2="124" stroke="#0A0A0A" stroke-width="1.5" opacity="0.4"/>
+
+</svg>
