@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -46,6 +46,10 @@ export default function BookingPage() {
     resolver: zodResolver(bookingStep3Schema),
     defaultValues: { cateringPreference: 'standard', ...allData },
   })
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [step])
 
   const onStep1 = (data: BookingStep1Data) => { setAllData((p) => ({ ...p, ...data })); setStep(2) }
   const onStep2 = (data: BookingStep2Data) => { setAllData((p) => ({ ...p, ...data })); setStep(3) }
