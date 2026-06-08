@@ -6,15 +6,15 @@ export const translations = {
       experiences: 'Experiences',
       reserve: 'Reserve',
       gift: 'Gift',
-      bookNow: 'Book Now',
+      bookNow: 'Reserve Now',
     },
 
     hero: {
       eyebrow: 'Buenos Aires · Private Concierge Experiences',
       headline1: 'Buenos Aires,',
-      headline2: 'Curated For You.',
-      sub: 'Private concierge experiences. Seamlessly curated. Exclusively yours.',
-      cta1: 'Book Your Experience',
+      headline2: 'Yours to Discover.',
+      sub: 'Private access. Personal attention. Exclusively yours.',
+      cta1: 'Reserve Your Experience',
       cta2: 'Explore Experiences',
       typewriterPhrases: [
         'Private Concierge. Active.',
@@ -33,7 +33,7 @@ export const translations = {
       label: '01 — Private Arrival Concierge',
       manifesto: "Your Buenos Aires\nbegins the moment you land.",
       headline1: 'Your arrival,',
-      headline2: 'flawlessly curated.',
+      headline2: 'privately hosted.',
       sub: 'From the tarmac to your suite — a private concierge meets you at arrivals, orchestrates every detail, and accompanies you in an executive cabin. Your Buenos Aires begins here.',
       features: [
         {
@@ -45,8 +45,8 @@ export const translations = {
           desc: 'Flight monitoring, proactive updates, zero wait. We anticipate so you never have to.',
         },
         {
-          title: 'Curated Welcome',
-          desc: 'Champagne, mineral water, a curated selection — prepared in your executive cabin before you arrive.',
+          title: 'The Arrival Ritual',
+          desc: 'Champagne, mineral water, and seasonal selections — prepared in your executive cabin before you arrive.',
         },
         {
           title: 'Complete Discretion',
@@ -54,7 +54,7 @@ export const translations = {
         },
         {
           title: 'Partner Hotel Network',
-          desc: 'Seamless handoff to Four Seasons, Faena, Alvear, and a curated selection of Buenos Aires properties.',
+          desc: 'Direct handoff to Four Seasons, Faena, Alvear, and our network of Buenos Aires properties.',
         },
       ],
     },
@@ -65,8 +65,8 @@ export const translations = {
       pillars: [
         {
           number: '01',
-          title: 'Curated Experiences',
-          desc: "We don't offer routes. We design memorable days. Each experience is crafted around you — your preferences, your pace, your moments.",
+          title: 'Private Experiences',
+          desc: "We don't offer itineraries. We arrange your Buenos Aires. Each experience takes shape around your preferences, your pace, your people.",
         },
         {
           number: '02',
@@ -76,7 +76,7 @@ export const translations = {
         {
           number: '03',
           title: 'Executive Cabin',
-          desc: 'Your private sanctuary throughout the city. Silence, comfort and presence — a mobile retreat curated for those who never compromise.',
+          desc: 'Your private sanctuary throughout the city. Silence, comfort and presence — a mobile retreat designed for those who never settle.',
         },
       ],
     },
@@ -85,7 +85,7 @@ export const translations = {
     signatureExperiences: {
       label: '02 — Signature Experiences',
       headline: 'Signature\nExperiences',
-      sub: 'Curated Buenos Aires experiences for those who understand that a city is best discovered through its finest moments.',
+      sub: 'Buenos Aires experiences for those who understand that a city reveals itself through its finest moments.',
 
       // Hero card — price anchor
       helicopter: {
@@ -102,7 +102,7 @@ export const translations = {
           'Champagne and gourmet in-flight service',
           'Return in your private executive cabin',
         ],
-        cta: 'Book Helicopter',
+        cta: 'Reserve Helicopter',
       },
 
       // Stack top
@@ -112,7 +112,7 @@ export const translations = {
         price: 'USD 1,800',
         priceNote: 'per group',
         subtext: 'Up to 4 guests · The complete Buenos Aires',
-        desc: 'An immersive Buenos Aires day designed around the extraordinary. From your door to the finest table in the city, ending with cocktails at the most iconic bar.',
+        desc: 'A Buenos Aires day reserved entirely for you. From your door to the finest table in the city, ending with cocktails at the most iconic bar.',
         features: [
           'Private executive cabin pickup',
           'Lunch at Don Julio',
@@ -120,7 +120,7 @@ export const translations = {
           'Cocktails at Crystal Bar, Alvear Hotel',
           'Return in private executive cabin',
         ],
-        cta: 'Book Full Day',
+        cta: 'Reserve Full Day',
       },
 
       // Stack bottom
@@ -129,7 +129,7 @@ export const translations = {
         price: 'USD 650',
         priceNote: 'per group',
         subtext: 'Dinner & Nightlife',
-        desc: 'Discover Buenos Aires after sunset. A curated evening — from the finest restaurant to the most exclusive venues — in your private executive cabin.',
+        desc: 'Buenos Aires after sunset. From the finest table in the city to its most exclusive venues — all in your private executive cabin.',
         features: [
           'Premium dinner reservation',
           'Exclusive venue access',
@@ -147,11 +147,11 @@ export const translations = {
       headline1: 'A Private',
       headline2: 'Sanctuary in Motion.',
       manifesto: 'Silence.\nPrivacy.\nPresence.',
-      sub: 'Not a means of getting somewhere. A private sanctuary curated for Buenos Aires — the space between one experience and the next, where every detail is calibrated for silence, comfort, and presence.',
+      sub: 'Not a means of getting somewhere. A private sanctuary designed for Buenos Aires — the space between one experience and the next, where every detail is calibrated for silence, comfort, and presence.',
       points: [
         'Full acoustic isolation — complete silence',
         'Premium leather executive seating',
-        'Curated ambient lighting system',
+        'Bespoke ambient lighting system',
         'Climate precision and air purification',
         'Charging and private connectivity',
       ],
@@ -163,13 +163,13 @@ export const translations = {
       label: '04 — Gift Buenos Aires',
       headline1: 'The City,',
       headline2: 'Gift Wrapped.',
-      sub: 'An unforgettable gift for travelers, executives, friends and loved ones. Premium experience cards for those who already have everything — but haven\'t experienced this.',
+      sub: 'A gift beyond expectation. For those who already have everything — but haven\'t seen this Buenos Aires.',
       cards: [
         {
           id: 'arrival',
           title: 'Airport Arrival Experience',
           price: 'USD 250',
-          desc: 'A curated private arrival — from the tarmac to their suite, with a personal concierge and executive cabin.',
+          desc: 'A private arrival designed around them — from the tarmac to their suite, with a personal concierge and executive cabin.',
           tag: 'Arrival Experience',
         },
         {
@@ -207,7 +207,7 @@ export const translations = {
         'Performing Artists',
         'Executive Assistants',
       ],
-      cta: 'Experience the Difference',
+      cta: 'Reserve Your Experience',
     },
 
     // ── Final CTA ────────────────────────────────────────────────────────────
@@ -215,8 +215,8 @@ export const translations = {
       headline1: 'Buenos Aires',
       headline2: 'Is Waiting',
       headline3: 'For You.',
-      sub: 'Private concierge. Curated experiences. Exceptional moments. Your Buenos Aires awaits.',
-      cta: 'Book Your Experience',
+      sub: 'Private concierge. Personal attention. Impeccably delivered. Your Buenos Aires awaits.',
+      cta: 'Reserve Your Experience',
     },
 
     // ── Footer ───────────────────────────────────────────────────────────────
@@ -242,7 +242,7 @@ export const translations = {
     // ── Booking flow ─────────────────────────────────────────────────────────
     bookingPage: {
       eyebrow: 'Reserve',
-      headline: 'Schedule Your Experience',
+      headline: 'Reserve Your Experience',
       steps: ['Flight', 'Guest', 'Preferences', 'Confirm'] as const,
       step1: {
         airportLabel: 'Airport',
@@ -279,7 +279,7 @@ export const translations = {
         catering: {
           standard: 'Standard — Champagne + mineral water',
           'no-alcohol': 'No alcohol — Premium juices + water',
-          custom: 'Custom curation',
+          custom: 'Custom selection',
           none: 'No cabin service',
         },
       },
@@ -314,7 +314,7 @@ export const translations = {
       },
       statusValue: 'Confirmed',
       remainingValue: '9 of 10',
-      ctaNew: 'Book another',
+      ctaNew: 'Reserve another',
       ctaHome: 'Back to home',
     },
 
@@ -493,8 +493,8 @@ export const translations = {
     hero: {
       eyebrow: 'Buenos Aires · Experiencias Concierge Privadas',
       headline1: 'Buenos Aires,',
-      headline2: 'Curado Para Vos.',
-      sub: 'Experiencias concierge privadas. Perfectamente curadas. Exclusivamente tuyas.',
+      headline2: 'Tuyo Por Descubrir.',
+      sub: 'Acceso privado. Atención personal. Exclusivamente tuyas.',
       cta1: 'Reservar Experiencia',
       cta2: 'Ver Experiencias',
       typewriterPhrases: [
@@ -512,7 +512,7 @@ export const translations = {
       label: '01 — Concierge de Llegada Privada',
       manifesto: "Tu Buenos Aires\ncomienza en el momento en que aterrizás.",
       headline1: 'Tu llegada,',
-      headline2: 'perfectamente curada.',
+      headline2: 'personalmente atendida.',
       sub: 'Desde la pista hasta tu suite — un concierge privado te recibe en llegadas, orquesta cada detalle y te acompaña en una cabina ejecutiva. Tu Buenos Aires comienza aquí.',
       features: [
         {
@@ -524,8 +524,8 @@ export const translations = {
           desc: 'Monitoreo de vuelo, actualizaciones proactivas, cero espera. Anticipamos para que vos no tengas que hacerlo.',
         },
         {
-          title: 'Bienvenida Curada',
-          desc: 'Champagne, agua mineral, selección curada — preparados en tu cabina ejecutiva antes de que llegues.',
+          title: 'El Ritual de Llegada',
+          desc: 'Champagne, agua mineral y selecciones de temporada — preparados en tu cabina ejecutiva antes de que llegues.',
         },
         {
           title: 'Discreción Total',
@@ -533,7 +533,7 @@ export const translations = {
         },
         {
           title: 'Red de Hoteles Partners',
-          desc: 'Traspaso seamless a Four Seasons, Faena, Alvear y una selección curada de propiedades en Buenos Aires.',
+          desc: 'Traspaso directo a Four Seasons, Faena, Alvear y nuestra red de propiedades en Buenos Aires.',
         },
       ],
     },
@@ -543,8 +543,8 @@ export const translations = {
       pillars: [
         {
           number: '01',
-          title: 'Experiencias Curadas',
-          desc: 'No ofrecemos rutas. Diseñamos días memorables. Cada experiencia se construye alrededor de vos — tus preferencias, tu ritmo, tus momentos.',
+          title: 'Experiencias Privadas',
+          desc: 'No ofrecemos itinerarios. Organizamos tu Buenos Aires. Cada experiencia toma forma alrededor de tus preferencias, tu ritmo y tu gente.',
         },
         {
           number: '02',
@@ -554,7 +554,7 @@ export const translations = {
         {
           number: '03',
           title: 'Cabina Ejecutiva',
-          desc: 'Tu santuario privado en la ciudad. Silencio, confort y presencia — un refugio móvil curado para quienes nunca comprometen.',
+          desc: 'Tu santuario privado en la ciudad. Silencio, confort y presencia — un refugio móvil diseñado para quienes nunca ceden.',
         },
       ],
     },
@@ -562,7 +562,7 @@ export const translations = {
     signatureExperiences: {
       label: '02 — Experiencias Exclusivas',
       headline: 'Experiencias\nExclusivas',
-      sub: 'Experiencias curadas en Buenos Aires para quienes entienden que una ciudad se descubre mejor a través de sus mejores momentos.',
+      sub: 'Experiencias en Buenos Aires para quienes entienden que una ciudad se revela a través de sus mejores momentos.',
 
       helicopter: {
         badge: 'Experiencia Signature',
@@ -587,7 +587,7 @@ export const translations = {
         price: 'USD 1.800',
         priceNote: 'por grupo',
         subtext: 'Hasta 4 personas · El Buenos Aires completo',
-        desc: 'Un día inmersivo en Buenos Aires diseñado alrededor de lo extraordinario. Desde tu puerta hasta la mejor mesa de la ciudad, terminando con cócteles en el bar más icónico.',
+        desc: 'Un día en Buenos Aires reservado enteramente para vos. Desde tu puerta hasta la mejor mesa de la ciudad, terminando con cócteles en el bar más icónico.',
         features: [
           'Cabina ejecutiva privada',
           'Almuerzo en Don Julio',
@@ -603,7 +603,7 @@ export const translations = {
         price: 'USD 650',
         priceNote: 'por grupo',
         subtext: 'Cena y Vida Nocturna',
-        desc: 'Descubrí Buenos Aires después del atardecer. Una velada curada — desde el mejor restaurante hasta los locales más exclusivos — en tu cabina ejecutiva privada.',
+        desc: 'Buenos Aires después del atardecer. Desde la mejor mesa de la ciudad hasta sus locales más exclusivos — en tu cabina ejecutiva privada.',
         features: [
           'Reserva de cena premium',
           'Acceso a locales exclusivos',
@@ -620,11 +620,11 @@ export const translations = {
       headline1: 'Un Santuario',
       headline2: 'Privado en Movimiento.',
       manifesto: 'Silencio.\nPrivacidad.\nPresencia.',
-      sub: 'No es un medio de trasladarse. Es un santuario privado curado para Buenos Aires — el espacio entre una experiencia y la siguiente, donde cada detalle está calibrado para el silencio, el confort y la presencia.',
+      sub: 'No es un medio de trasladarse. Es un santuario privado diseñado para Buenos Aires — el espacio entre una experiencia y la siguiente, donde cada detalle está calibrado para el silencio, el confort y la presencia.',
       points: [
         'Aislamiento acústico total — silencio completo',
         'Asientos ejecutivos en cuero premium',
-        'Sistema de iluminación ambiental curada',
+        'Sistema de iluminación ambiental a medida',
         'Precisión climática y purificación de aire',
         'Carga y conectividad privada',
       ],
@@ -635,13 +635,13 @@ export const translations = {
       label: '04 — Regalá Buenos Aires',
       headline1: 'La Ciudad,',
       headline2: 'Para Regalar.',
-      sub: 'Un regalo inolvidable para viajeros, ejecutivos, amigos y seres queridos. Tarjetas de experiencia premium para quienes ya tienen todo — pero aún no experimentaron esto.',
+      sub: 'Un regalo más allá de lo esperado. Para quienes ya tienen todo — pero aún no conocieron este Buenos Aires.',
       cards: [
         {
           id: 'arrival',
           title: 'Experiencia de Llegada',
           price: 'USD 250',
-          desc: 'Una llegada privada curada — desde la pista hasta su suite, con concierge personal y cabina ejecutiva.',
+          desc: 'Una llegada privada diseñada para ellos — desde la pista hasta su suite, con concierge personal y cabina ejecutiva.',
           tag: 'Experiencia de Llegada',
         },
         {
@@ -678,14 +678,14 @@ export const translations = {
         'Artistas en Gira',
         'Asistentes Ejecutivos',
       ],
-      cta: 'Vivir la Diferencia',
+      cta: 'Reservar Experiencia',
     },
 
     finalCta: {
       headline1: 'Buenos Aires',
       headline2: 'Te Espera',
       headline3: 'A Vos.',
-      sub: 'Concierge privado. Experiencias curadas. Momentos excepcionales. Tu Buenos Aires te espera.',
+      sub: 'Concierge privado. Atención personal. Impecablemente entregado. Tu Buenos Aires te espera.',
       cta: 'Reservar Experiencia',
     },
 
@@ -710,7 +710,7 @@ export const translations = {
 
     bookingPage: {
       eyebrow: 'Reservar',
-      headline: 'Programar tu Experiencia',
+      headline: 'Reservar tu Experiencia',
       steps: ['Vuelo', 'Huésped', 'Preferencias', 'Confirmar'] as const,
       step1: {
         airportLabel: 'Aeropuerto',
@@ -747,7 +747,7 @@ export const translations = {
         catering: {
           standard: 'Estándar — Champagne + agua mineral',
           'no-alcohol': 'Sin alcohol — Jugos premium + agua',
-          custom: 'Curación personalizada',
+          custom: 'Selección personalizada',
           none: 'Sin servicio de cabina',
         },
       },
