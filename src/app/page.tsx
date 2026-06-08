@@ -2,6 +2,7 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { TheExperienceSection } from '@/components/sections/TheExperienceSection'
+import { WhyUsSection } from '@/components/sections/WhyUsSection'
 import { SignatureExperiencesSection } from '@/components/sections/SignatureExperiencesSection'
 import { VehicleExperienceSection } from '@/components/sections/VehicleExperienceSection'
 import { GiftExperienceSection } from '@/components/sections/GiftExperienceSection'
@@ -15,6 +16,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <TheExperienceSection />
+        <WhyUsSection />
         <SignatureExperiencesSection />
         <VehicleExperienceSection />
         <GiftExperienceSection />
