@@ -10,12 +10,20 @@ export const translations = {
     },
 
     hero: {
-      eyebrow: 'Buenos Aires · Private Concierge Experiences',
-      headline1: 'Buenos Aires,',
-      headline2: 'Yours to Discover.',
-      sub: 'Private access. Personal attention. Exclusively yours.',
+      eyebrow: 'Buenos Aires · Private Experiences',
+      headline1: 'Your Private',
+      headline2: 'Buenos Aires.',
+      sub: 'From the moment you arrive, every detail is arranged around you.',
+      services: [
+        'Airport arrivals.',
+        'Private city experiences.',
+        'Executive hospitality.',
+        'Helicopter journeys.',
+      ],
+      subCoda: 'All seamlessly arranged.',
       cta1: 'Reserve Your Experience',
       cta2: 'Explore Experiences',
+      // kept for backward compat
       typewriterPhrases: [
         'Private Concierge. Active.',
         'Helicopter. Reserved.',
@@ -23,7 +31,6 @@ export const translations = {
         'Crystal Bar. Arranged.',
         'Buenos Aires. Yours.',
       ],
-      // kept for backward compat
       availabilityLabel: (n: number, total: number) =>
         `${n} of ${total} founding memberships available`,
     },
@@ -491,12 +498,20 @@ export const translations = {
     },
 
     hero: {
-      eyebrow: 'Buenos Aires · Experiencias Concierge Privadas',
-      headline1: 'Buenos Aires,',
-      headline2: 'Tuyo Por Descubrir.',
-      sub: 'Acceso privado. Atención personal. Exclusivamente tuyas.',
+      eyebrow: 'Buenos Aires · Experiencias Privadas',
+      headline1: 'Tu Buenos Aires',
+      headline2: 'Privado.',
+      sub: 'Desde el momento en que llegás, cada detalle está organizado para vos.',
+      services: [
+        'Llegadas al aeropuerto.',
+        'Experiencias privadas en la ciudad.',
+        'Hospitalidad ejecutiva.',
+        'Vuelos en helicóptero.',
+      ],
+      subCoda: 'Todo coordinado para vos.',
       cta1: 'Reservar Experiencia',
       cta2: 'Ver Experiencias',
+      // kept for backward compat
       typewriterPhrases: [
         'Concierge Privado. Activo.',
         'Helicóptero. Reservado.',
