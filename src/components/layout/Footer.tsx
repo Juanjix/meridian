@@ -31,16 +31,22 @@ export function Footer() {
               <div className="ea-label mb-5">{t.footer.servicesLabel}</div>
               <div className="flex flex-col gap-3">
                 <Link
-                  href="/membership"
+                  href="/#experiences"
                   className="text-xs font-light text-silver-light hover:text-warm-white transition-colors duration-200"
                 >
-                  {t.footer.links.membership}
+                  {t.footer.links.experiences}
                 </Link>
                 <Link
                   href="/booking"
                   className="text-xs font-light text-silver-light hover:text-warm-white transition-colors duration-200"
                 >
                   {t.footer.links.reserve}
+                </Link>
+                <Link
+                  href="/#gift"
+                  className="text-xs font-light text-silver-light hover:text-warm-white transition-colors duration-200"
+                >
+                  {t.footer.links.gift}
                 </Link>
               </div>
             </div>

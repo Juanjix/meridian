@@ -6,7 +6,6 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 import { fadeUp, fadeIn, staggerSlow, EASE_CINEMA, EASE_APPLE } from '@/lib/animations'
 import { TypewriterLine } from '@/components/ui/TypewriterLine'
-import { FOUNDERS_AVAILABLE, FOUNDERS_TOTAL } from '@/lib/utils'
 
 export function HeroSection() {
   const { t } = useLanguage()
@@ -156,30 +155,19 @@ export function HeroSection() {
 
           {/* CTAs */}
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 md:gap-4">
-            <Link href="/membership" className="btn-ea-primary w-full sm:w-auto active:opacity-70">
+            <Link href="/booking" className="btn-ea-primary w-full sm:w-auto active:opacity-70">
               {t.hero.cta1}
             </Link>
-            <Link href="mailto:hola@millenniumtravel.com.ar" className="btn-ea-ghost w-full sm:w-auto active:opacity-70">
+            <Link href="/#experiences" className="btn-ea-ghost w-full sm:w-auto active:opacity-70">
               {t.hero.cta2}
             </Link>
           </motion.div>
 
-          {/* Availability indicator */}
+          {/* Brand mark */}
           <motion.div variants={fadeIn} className="mt-10 md:mt-14 flex items-center gap-4">
-            <div className="flex gap-[3px]">
-              {Array.from({ length: FOUNDERS_TOTAL }).map((_, i) => (
-                <div
-                  key={i}
-                  className={`w-[3px] h-[3px] rounded-full ${
-                    i < FOUNDERS_TOTAL - FOUNDERS_AVAILABLE
-                      ? 'bg-champagne/70'
-                      : 'bg-silver/18'
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-2xs font-light tracking-[0.14em]" style={{ color: 'rgba(184,184,184,0.55)' }}>
-              {t.hero.availabilityLabel(FOUNDERS_AVAILABLE, FOUNDERS_TOTAL)}
+            <div className="w-8 h-px bg-champagne/25" />
+            <span className="text-2xs font-light tracking-[0.18em] uppercase" style={{ color: 'rgba(184,184,184,0.45)' }}>
+              Buenos Aires · Since 2024
             </span>
           </motion.div>
         </motion.div>

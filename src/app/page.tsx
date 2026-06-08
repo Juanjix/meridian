@@ -2,11 +2,11 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { TheExperienceSection } from '@/components/sections/TheExperienceSection'
-import { FoundersMembershipSection } from '@/components/sections/FoundersMembershipSection'
+import { SignatureExperiencesSection } from '@/components/sections/SignatureExperiencesSection'
 import { VehicleExperienceSection } from '@/components/sections/VehicleExperienceSection'
+import { GiftExperienceSection } from '@/components/sections/GiftExperienceSection'
 import { CorporateHospitalitySection } from '@/components/sections/CorporateHospitalitySection'
 import { FinalCTASection } from '@/components/sections/FinalCTASection'
-import { ExecutiveExperiencesSection } from '@/components/sections/ExecutiveExperiencesSection'
 
 export default function HomePage() {
   return (
@@ -15,9 +15,9 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <TheExperienceSection />
-        <FoundersMembershipSection />
-        <ExecutiveExperiencesSection />
+        <SignatureExperiencesSection />
         <VehicleExperienceSection />
+        <GiftExperienceSection />
         <CorporateHospitalitySection />
         <FinalCTASection />
       </main>

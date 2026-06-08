@@ -62,9 +62,9 @@ export function Navbar() {
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
   const links = [
-    { href: '/#experience', label: t.nav.experience, num: '01' },
-    { href: '/membership', label: t.nav.membership, num: '02' },
-    { href: '/booking', label: t.nav.reserve, num: '03' },
+    { href: '/#experiences', label: t.nav.experiences, num: '01' },
+    { href: '/booking', label: t.nav.reserve, num: '02' },
+    { href: '/#gift', label: t.nav.gift, num: '03' },
   ]
 
   return (
@@ -128,8 +128,8 @@ export function Navbar() {
             </div>
 
             {/* CTA — desktop */}
-            <Link href="/membership" className="btn-ea-primary text-[10px] px-5 py-2.5 hidden sm:inline-flex">
-              {t.nav.requestAccess}
+            <Link href="/booking" className="btn-ea-primary text-[10px] px-5 py-2.5 hidden sm:inline-flex">
+              {t.nav.bookNow}
             </Link>
 
             {/* Hamburger — mobile only */}
@@ -235,11 +235,11 @@ export function Navbar() {
               >
                 {/* CTA */}
                 <Link
-                  href="/membership"
+                  href="/booking"
                   onClick={closeMenu}
                   className="btn-ea-primary w-full justify-center py-4 text-[11px] active:opacity-70"
                 >
-                  {t.nav.requestAccess}
+                  {t.nav.bookNow}
                 </Link>
 
                 {/* Lang + location row */}
