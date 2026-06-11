@@ -28,6 +28,7 @@ export default function BookingPage() {
 
   const [step, setStep] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
+  const [hasError, setHasError] = useState(false)
   const [allData, setAllData] = useState<Partial<AllBookingData>>({
     airport: 'EZE',
     passengerCount: 1,
@@ -57,6 +58,7 @@ export default function BookingPage() {
 
   const onConfirm = async () => {
     setIsLoading(true)
+    setHasError(false)
     try {
       const res = await fetch('/api/confirm-booking', {
         method: 'POST',
@@ -64,9 +66,14 @@ export default function BookingPage() {
         body: JSON.stringify(allData),
       })
       const json = await res.json()
-      if (json.success) router.push('/booking/confirmed?code=' + json.confirmationCode)
+      if (json.success) {
+        router.push('/booking/confirmed?code=' + json.confirmationCode)
+        return
+      }
+      setHasError(true)
     } catch (err) {
       console.error(err)
+      setHasError(true)
     } finally {
       setIsLoading(false)
     }
@@ -215,6 +222,41 @@ export default function BookingPage() {
                   )}
                 </div>
 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="ea-label mb-2 block">{b.step2.emailLabel} *</label>
+                    <input
+                      {...form2.register('email')}
+                      type="email"
+                      className="input-ea"
+                      placeholder={b.step2.emailPlaceholder}
+                    />
+                    {form2.formState.errors.email && (
+                      <p className="text-2xs text-red-400 mt-1.5">{form2.formState.errors.email.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="ea-label mb-2 block">{b.step2.phoneLabel} *</label>
+                    <input
+                      {...form2.register('phone')}
+                      type="tel"
+                      className="input-ea"
+                      placeholder={b.step2.phonePlaceholder}
+                    />
+                    {form2.formState.errors.phone && (
+                      <p className="text-2xs text-red-400 mt-1.5">{form2.formState.errors.phone.message}</p>
+                    )}
+                  </div>
+                </div>
+                <p className="text-2xs text-silver-light -mt-5">{b.step2.phoneNote}</p>
+
+                <div>
+                  <label className="ea-label mb-2 block">
+                    {b.step2.companyLabel} <span className="normal-case">{b.step2.optionalCompany}</span>
+                  </label>
+                  <input {...form2.register('company')} className="input-ea" />
+                </div>
+
                 <div>
                   <label className="ea-label mb-4 block">{b.step2.countLabel}</label>
                   <div className="flex items-center gap-5">
@@ -264,6 +306,18 @@ export default function BookingPage() {
             {/* Step 3 — Preferences */}
             {step === 3 && (
               <form onSubmit={form3.handleSubmit(onStep3)} className="flex flex-col gap-7">
+                {/* Honeypot — hidden from real users, bots tend to fill every field */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 0, height: 0, overflow: 'hidden' }}>
+                  <label htmlFor="website">Website</label>
+                  <input
+                    {...form3.register('website')}
+                    id="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div>
                   <label className="ea-label mb-4 block">{b.step3.cateringLabel}</label>
                   <div className="flex flex-col gap-2">
@@ -326,6 +380,8 @@ export default function BookingPage() {
                       [b.step4.keys.flight, allData.flightNumber ?? '—'],
                       [b.step4.keys.destination, allData.destination ?? '—'],
                       [b.step4.keys.passengerSign, allData.passengerName ?? '—'],
+                      [b.step4.keys.email, allData.email ?? '—'],
+                      [b.step4.keys.phone, allData.phone ?? '—'],
                       [b.step4.keys.passengers, String(allData.passengerCount ?? 1)],
                       [b.step4.keys.catering, b.step3.catering[allData.cateringPreference as CateringPreference] ?? '—'],
                       [b.step4.keys.remaining, '9 of 10'],
@@ -342,6 +398,13 @@ export default function BookingPage() {
                   {b.step4.note}
                 </div>
 
+                {hasError && (
+                  <div className="border border-red-400/20 bg-red-400/5 p-5">
+                    <p className="text-xs text-warm-white font-light mb-1">{b.step4.errorTitle}</p>
+                    <p className="text-2xs text-silver-light leading-relaxed">{b.step4.errorMessage}</p>
+                  </div>
+                )}
+
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button type="button" onClick={() => setStep(3)} className="btn-ea-ghost active:opacity-70">
                     {b.step4.back}
@@ -351,7 +414,7 @@ export default function BookingPage() {
                     disabled={isLoading}
                     className="btn-ea-primary sm:flex-1 justify-center active:opacity-70"
                   >
-                    {isLoading ? b.step4.confirming : b.step4.confirm}
+                    {isLoading ? b.step4.confirming : hasError ? b.step4.retry : b.step4.confirm}
                   </button>
                 </div>
               </div>

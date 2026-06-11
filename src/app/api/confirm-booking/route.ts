@@ -1,12 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateCode } from '@/lib/utils'
+import { generateCode, AIRPORTS, CATERING_LABELS } from '@/lib/utils'
+import { reservationSchema } from '@/lib/validations'
+import { sendReservationEmail } from '@/lib/email'
+import { isRateLimited, getClientIp } from '@/lib/rateLimit'
+import type { Airport } from '@/types'
 
 /**
  * POST /api/confirm-booking
  *
- * Registers a new booking against a membership.
- * In production: validate membership code, decrement experience count,
- * save booking to DB, send WhatsApp via Twilio/360dialog/Meta API.
+ * Registers a new booking/reservation request and notifies the concierge
+ * team by email (server-side only — credentials live in env vars, see
+ * src/lib/email.ts). In production: also persist the booking to a database
+ * and send a WhatsApp confirmation.
  *
  * WHATSAPP INTEGRATION NOTE:
  *   Use Twilio for simplicity:
@@ -20,7 +25,32 @@ import { generateCode } from '@/lib/utils'
 
 export async function POST(req: NextRequest) {
   try {
+    // ── Basic spam protection: rate limit by IP ──────────────────────────
+    const ip = getClientIp(req)
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { success: false, error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      )
+    }
+
     const body = await req.json()
+
+    // ── Honeypot: bots fill every field, real users never see `website` ──
+    if (body?.website) {
+      // Silently pretend success so bots don't learn the field is checked.
+      return NextResponse.json({ success: true, confirmationCode: generateCode('MRD') })
+    }
+
+    // ── Server-side validation ────────────────────────────────────────────
+    const parsed = reservationSchema.safeParse(body)
+    if (!parsed.success) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid reservation data', details: parsed.error.flatten() },
+        { status: 400 }
+      )
+    }
+
     const {
       airport,
       flightDate,
@@ -28,17 +58,17 @@ export async function POST(req: NextRequest) {
       flightNumber,
       destination,
       passengerName,
+      email,
+      phone,
+      company,
       passengerCount,
       membershipCode,
       cateringPreference,
       cateringNotes,
-    } = body
+    } = parsed.data
 
-    // Validate membership code (mock — in prod query DB)
-    // if (membershipCode) { ... }
-
-    // Generate confirmation code
     const confirmationCode = generateCode('MRD')
+    const createdAt = new Date().toISOString()
 
     // In prod: save booking to DB
     const booking = {
@@ -50,17 +80,46 @@ export async function POST(req: NextRequest) {
       flightNumber,
       destination,
       passengerName,
+      email,
+      phone,
+      company,
       passengerCount,
       membershipCode,
       cateringPreference,
       cateringNotes,
       status: 'confirmed',
-      createdAt: new Date().toISOString(),
+      createdAt,
     }
 
-    console.log('Booking confirmed:', booking)
+    // ── Notify the concierge team by email ────────────────────────────────
+    const extra: Record<string, string> = {}
+    if (flightNumber) extra['Vuelo'] = flightNumber
+    if (membershipCode) extra['Código de membresía'] = membershipCode
+    extra['Preferencia de cabina'] = CATERING_LABELS[cateringPreference] ?? cateringPreference
 
-    // In prod: send WhatsApp notification here
+    try {
+      await sendReservationEmail({
+        name: passengerName,
+        company,
+        email,
+        phone,
+        service: 'Traslado Ejecutivo / Airport Transfer',
+        date: flightDate,
+        time: flightTime,
+        passengers: passengerCount,
+        origin: AIRPORTS[airport as Airport] ?? airport,
+        destination,
+        message: cateringNotes,
+        timestamp: createdAt,
+        extra,
+      })
+    } catch (emailError) {
+      console.error('Reservation email failed:', emailError)
+      return NextResponse.json(
+        { success: false, error: 'We could not send your reservation. Please try again or contact us directly.' },
+        { status: 502 }
+      )
+    }
 
     return NextResponse.json({
       success: true,
