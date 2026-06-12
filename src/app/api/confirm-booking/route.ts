@@ -1,17 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { generateCode, AIRPORTS, CATERING_LABELS } from '@/lib/utils'
 import { reservationSchema } from '@/lib/validations'
-import { sendReservationEmail } from '@/lib/email'
+import { sendReservationEmail, sendCustomerConfirmationEmail } from '@/lib/email'
 import { isRateLimited, getClientIp } from '@/lib/rateLimit'
+import { prisma } from '@/lib/prisma'
+import { logger } from '@/lib/logger'
 import type { Airport } from '@/types'
 
 /**
  * POST /api/confirm-booking
  *
- * Registers a new booking/reservation request and notifies the concierge
- * team by email (server-side only — credentials live in env vars, see
- * src/lib/email.ts). In production: also persist the booking to a database
- * and send a WhatsApp confirmation.
+ * Flow:
+ *   1. Validate + sanitize the incoming reservation.
+ *   2. Persist it to the database — this is the source of truth. Once this
+ *      succeeds, the lead is safe even if every email below fails.
+ *   3. Notify the concierge team by email (Reply-To = guest email).
+ *   4. Send the guest a short confirmation email.
+ *
+ * Email failures are logged with structured context and recorded on the
+ * reservation row (adminEmailError / customerEmailError) so they can be
+ * spotted and retried — they do NOT fail the request, since the reservation
+ * itself was already saved.
  *
  * WHATSAPP INTEGRATION NOTE:
  *   Use Twilio for simplicity:
@@ -24,9 +33,11 @@ import type { Airport } from '@/types'
  */
 
 export async function POST(req: NextRequest) {
+  const ip = getClientIp(req)
+  const userAgent = req.headers.get('user-agent') ?? undefined
+
   try {
     // ── Basic spam protection: rate limit by IP ──────────────────────────
-    const ip = getClientIp(req)
     if (isRateLimited(ip)) {
       return NextResponse.json(
         { success: false, error: 'Too many requests. Please try again later.' },
@@ -67,31 +78,52 @@ export async function POST(req: NextRequest) {
       cateringNotes,
     } = parsed.data
 
-    const confirmationCode = generateCode('MRD')
-    const createdAt = new Date().toISOString()
+    // Analytics fields — informational only, never validated as required.
+    const language = typeof body.language === 'string' ? body.language.slice(0, 10) : undefined
+    const sourceUrl = typeof body.sourceUrl === 'string' ? body.sourceUrl.slice(0, 500) : undefined
 
-    // In prod: save booking to DB
-    const booking = {
-      id: crypto.randomUUID(),
-      confirmationCode,
-      airport,
-      flightDate,
-      flightTime,
-      flightNumber,
-      destination,
-      passengerName,
-      email,
-      phone,
-      company,
-      passengerCount,
-      membershipCode,
-      cateringPreference,
-      cateringNotes,
-      status: 'confirmed',
-      createdAt,
+    const confirmationCode = generateCode('MRD')
+
+    // ── 1. Persist — the reservation must exist before anything else ───────
+    let reservation
+    try {
+      reservation = await prisma.reservation.create({
+        data: {
+          confirmationCode,
+          airport,
+          flightDate,
+          flightTime,
+          flightNumber,
+          destination,
+          passengerName,
+          email,
+          phone,
+          company,
+          passengerCount,
+          membershipCode,
+          cateringPreference,
+          cateringNotes,
+          status: 'confirmed',
+          ipAddress: ip,
+          userAgent,
+          language,
+          sourceUrl,
+        },
+      })
+    } catch (dbError) {
+      logger.error('Failed to persist reservation', {
+        error: dbError instanceof Error ? dbError.message : String(dbError),
+        confirmationCode,
+        email,
+        ip,
+      })
+      return NextResponse.json(
+        { success: false, error: 'Booking failed. Please try again.' },
+        { status: 500 }
+      )
     }
 
-    // ── Notify the concierge team by email ────────────────────────────────
+    // ── 2. Notify the concierge team by email ───────────────────────────────
     const extra: Record<string, string> = {}
     if (flightNumber) extra['Vuelo'] = flightNumber
     if (membershipCode) extra['Código de membresía'] = membershipCode
@@ -110,24 +142,58 @@ export async function POST(req: NextRequest) {
         origin: AIRPORTS[airport as Airport] ?? airport,
         destination,
         message: cateringNotes,
-        timestamp: createdAt,
+        timestamp: reservation.createdAt.toISOString(),
         extra,
       })
+      await prisma.reservation.update({
+        where: { id: reservation.id },
+        data: { adminEmailSent: true },
+      })
     } catch (emailError) {
-      console.error('Reservation email failed:', emailError)
-      return NextResponse.json(
-        { success: false, error: 'We could not send your reservation. Please try again or contact us directly.' },
-        { status: 502 }
-      )
+      const message = emailError instanceof Error ? emailError.message : String(emailError)
+      logger.error('Admin notification email failed', {
+        reservationId: reservation.id,
+        confirmationCode,
+        error: message,
+      })
+      await prisma.reservation
+        .update({ where: { id: reservation.id }, data: { adminEmailError: message } })
+        .catch((e) => logger.error('Failed to record admin email error', { reservationId: reservation.id, error: String(e) }))
+    }
+
+    // ── 3. Send the guest a confirmation email ──────────────────────────────
+    try {
+      await sendCustomerConfirmationEmail({
+        email,
+        name: passengerName,
+        language: language === 'es' ? 'es' : 'en',
+      })
+      await prisma.reservation.update({
+        where: { id: reservation.id },
+        data: { customerEmailSent: true },
+      })
+    } catch (emailError) {
+      const message = emailError instanceof Error ? emailError.message : String(emailError)
+      logger.error('Customer confirmation email failed', {
+        reservationId: reservation.id,
+        confirmationCode,
+        error: message,
+      })
+      await prisma.reservation
+        .update({ where: { id: reservation.id }, data: { customerEmailError: message } })
+        .catch((e) => logger.error('Failed to record customer email error', { reservationId: reservation.id, error: String(e) }))
     }
 
     return NextResponse.json({
       success: true,
       confirmationCode,
-      booking,
+      booking: reservation,
     })
   } catch (error) {
-    console.error('Booking error:', error)
+    logger.error('Unhandled booking error', {
+      error: error instanceof Error ? error.message : String(error),
+      ip,
+    })
     return NextResponse.json({ success: false, error: 'Booking failed' }, { status: 500 })
   }
 }

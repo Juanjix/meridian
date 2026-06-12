@@ -125,9 +125,10 @@ function buildBody(data: ReservationEmailData): string {
 }
 
 /**
- * Sends the reservation notification email. Throws if the email service is
- * not configured or the send fails — callers should catch this and surface
- * an error to the client.
+ * Sends the reservation notification email to the concierge team. The
+ * guest's email is set as Reply-To so the team can respond directly.
+ * Throws if the email service is not configured or the send fails —
+ * callers should catch this and surface an error / log accordingly.
  */
 export async function sendReservationEmail(data: ReservationEmailData): Promise<void> {
   const to = process.env.RESERVATION_EMAIL_TO || DEFAULT_RECIPIENT
@@ -139,5 +140,62 @@ export async function sendReservationEmail(data: ReservationEmailData): Promise<
     replyTo: data.email && data.email.includes('@') ? sanitize(data.email) : undefined,
     subject: 'New Executive Arrival Reservation',
     text: buildBody(data),
+  })
+}
+
+export interface CustomerConfirmationData {
+  email: string
+  name?: string
+  /** Determines which copy variant is sent. Defaults to English. */
+  language?: 'en' | 'es'
+}
+
+const CUSTOMER_CONFIRMATION_COPY = {
+  en: {
+    subject: 'Executive Arrival Request Received',
+    greeting: (name?: string) => (name ? `Dear ${name},` : 'Hello,'),
+    body: [
+      'Thank you for your inquiry.',
+      '',
+      'Your request has been received and our concierge team will contact you shortly.',
+      '',
+      'Executive Arrival',
+      'Your Arrival, Handled.',
+    ],
+  },
+  es: {
+    subject: 'Executive Arrival Request Received',
+    greeting: (name?: string) => (name ? `Estimado/a ${name},` : 'Hola,'),
+    body: [
+      'Gracias por tu consulta.',
+      '',
+      'Tu solicitud fue recibida y nuestro equipo de concierge se pondrá en contacto a la brevedad.',
+      '',
+      'Executive Arrival',
+      'Tu Llegada, Resuelta.',
+    ],
+  },
+} as const
+
+/**
+ * Sends a short, premium confirmation email to the guest acknowledging
+ * receipt of their reservation request. Throws if the email service is not
+ * configured or the send fails — callers should catch this and surface an
+ * error / log accordingly. This must never block persistence of the
+ * reservation itself.
+ */
+export async function sendCustomerConfirmationEmail(data: CustomerConfirmationData): Promise<void> {
+  const from = process.env.SMTP_FROM || process.env.SMTP_USER
+  const copy = CUSTOMER_CONFIRMATION_COPY[data.language === 'es' ? 'es' : 'en']
+  const name = data.name ? sanitize(data.name) : undefined
+  const greeting = name && name !== '—' ? copy.greeting(name) : copy.greeting()
+
+  const text = [greeting, '', ...copy.body].join('\n')
+
+  await getTransporter().sendMail({
+    from,
+    to: data.email,
+    subject: copy.subject,
+    text,
   })
 }

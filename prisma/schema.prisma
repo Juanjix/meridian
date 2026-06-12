@@ -1,0 +1,61 @@
+// Prisma schema for Executive Arrival
+//
+// Setup:
+//   1. Set DATABASE_URL in your environment (Postgres — Supabase recommended).
+//   2. npx prisma migrate dev --name init
+//   3. npx prisma generate (also runs automatically via the `postinstall` script)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// A reservation/inquiry submitted through the booking flow.
+// This is the source of truth — created BEFORE any notification email is
+// sent, so a lead is never lost if the email provider is down.
+model Reservation {
+  id               String   @id @default(uuid())
+  confirmationCode String   @unique
+
+  // Flight / trip details
+  airport          String
+  flightDate       String
+  flightTime       String
+  flightNumber     String?
+  destination      String
+
+  // Guest details
+  passengerName    String
+  email            String
+  phone            String
+  company          String?
+  passengerCount   Int
+  membershipCode   String?
+
+  // Preferences
+  cateringPreference String
+  cateringNotes      String?
+
+  status           String   @default("confirmed")
+
+  // Email delivery tracking — so failed sends can be identified and retried
+  adminEmailSent      Boolean   @default(false)
+  adminEmailError     String?
+  customerEmailSent   Boolean   @default(false)
+  customerEmailError  String?
+
+  // Analytics
+  ipAddress  String?
+  userAgent  String?
+  language   String?
+  sourceUrl  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reservations")
+}

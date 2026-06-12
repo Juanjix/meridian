@@ -23,7 +23,7 @@ type AllBookingData = BookingStep1Data & BookingStep2Data & BookingStep3Data
 
 export default function BookingPage() {
   const router = useRouter()
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   const b = t.bookingPage
 
   const [step, setStep] = useState(1)
@@ -63,7 +63,11 @@ export default function BookingPage() {
       const res = await fetch('/api/confirm-booking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(allData),
+        body: JSON.stringify({
+          ...allData,
+          language: lang,
+          sourceUrl: window.location.href,
+        }),
       })
       const json = await res.json()
       if (json.success) {
